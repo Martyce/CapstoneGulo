@@ -17,6 +17,118 @@ o.read("tbl_logsrooms?ORDERBY=fldApprovalID DESC").then(x => {
     xallLogs = x;
 })
 
+
+callDt = (yz = []) => {
+
+    $(function () {
+        var start = moment(new Date());
+        var end = moment(new Date());
+
+        function cb(start, end) {
+            $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
+        }
+
+        $('#reportrange').daterangepicker({
+            startDate: start,
+            endDate: end,
+            ranges: {
+                'Today': [moment(), moment()],
+                'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+                'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+                'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+                'This Month': [moment().startOf('month'), moment().endOf('month')],
+                'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+            }
+        }, cb);
+
+        cb(start, end);
+
+    });
+
+
+    let tbl = $('#dtBasicExample').DataTable({
+        "order": [[0, "desc"]],
+        "scrollY": "490px",
+        "scrollCollapse": true,
+        'sort': true,
+        retrieve: true,
+        searching: true,
+        data: yz,
+        columns: [
+            { 'data': 'fldCtrlNo' },
+            { 'data': 'fldFacility' },
+            { 'data': 'fldUserID' },
+            { 'data': 'fldEventType' },
+            { 'data': 'fldDateTimeReq' },
+            {
+                'data': 'fldRemarks',
+                'render': function (stats) {
+                    var color = "black";
+                    var badge;
+                    if (stats == "Rejected" || stats == "Cancelled") {
+                        color = 'text-danger';
+                        badge = 'badge badge-danger'
+                    } else if (stats == "Accepted") {
+                        color = 'text-success';
+                        badge = 'badge badge-success'
+                    } else {
+                        color = 'text-warning';
+                        badge = 'badge badge-warning'
+                    }
+
+                    return "<span class='" + badge + "'>" + stats + "</span></label>";
+                }
+
+            },
+            {
+                'data': 'fldCtrlNo',
+                'render': function (id) {
+                    return '<a onclick=sfunc("' + id + '") data-toggle="tooltip" title="Default tooltip"><span class="badge badge-pill blue">View</span></a>'
+                }
+            }
+        ]
+    }).clear().rows.add(yz).draw();
+    $('.dataTables_length').addClass('bs-select');
+
+    tbl.on('search.dt', function () {
+        //number of filtered rows
+        console.log(tbl.rows({ filter: 'applied' }).nodes().length);
+        //filtered rows data as arrays
+        console.log(tbl.rows({ filter: 'applied' }).data());
+    })
+
+    $('#reportrange').on('apply.daterangepicker', function (ev, picker) {
+        var start = picker.startDate;
+        var end = picker.endDate;
+        $.fn.dataTable.ext.search.push(
+            function (settings, data, dataIndex) {
+                var min = start;
+                var max = end;
+                let o = data[4].split("@");
+                console.log(o[0].replace(/ /g, ''));
+                var startDate = new Date(o[0].replace(/ /g, ''));
+                if (min == null && max == null) {
+                    return true;
+                }
+                if (min == null && startDate <= max) {
+                    return true;
+                }
+                if (max == null && startDate >= min) {
+                    return true;
+                }
+                if (startDate <= max && startDate >= min) {
+                    return true;
+                }
+                return false;
+            }
+        );
+        tbl.draw();
+
+        $.fn.dataTable.ext.search.pop();
+    });
+}
+
+
 genPull = () => {
     if (uLog.Authorize == "Dean" || uLog.Authorize == "Department Head") {
         updateType = "In progress";
@@ -94,87 +206,101 @@ genPull = () => {
         updateType = "Finalizing";
         o.read("tbl_reservations?ORDERBY=fldCtrlNo DESC").then(data => {
             let longString = "";
+            let yz = [];
             data.map(x => {
-                if ((x.fldRemarks == 'Resend' || x.fldRemarks == 'Processing' || x.fldRemarks == 'Finalizing' || x.fldRemarks == 'Accepted' || x.fldRemarks == 'Cancelled' || x.fldRemarks == 'Rejected') && parseInt(x.fldApprovalCount) > 1) {
+                if ((x.fldRemarks == 'Resend' || x.fldRemarks == 'Finalizing' || x.fldRemarks == 'Accepted' || x.fldRemarks == 'Cancelled' || x.fldRemarks == 'Rejected') && parseInt(x.fldApprovalCount) > 1) {
                     if (x.fldRemarks != 'Rejected') {
-                        longString += '<tr>';
-                        longString += '<td>' + x.fldCtrlNo + '</td>';
-                        longString += '<td>' + x.fldFacility + '</td>';
-                        longString += '<td>' + x.fldUserID + '</td>';
-                        longString += '<td>' + x.fldEventType + '</td>';
-                        longString += '<td>' + x.fldRemarks + '</td>';
-                        longString += '<td><a onclick=sfunc("' + x.fldCtrlNo + '")><span class="badge badge-pill blue">View</span></a></td>';
-                        longString += '</tr>';
+                        // longString += '<tr>';
+                        // longString += '<td>' + x.fldCtrlNo + '</td>';
+                        // longString += '<td>' + x.fldFacility + '</td>';
+                        // longString += '<td>' + x.fldUserID + '</td>';
+                        // longString += '<td>' + x.fldEventType + '</td>';
+                        // longString += '<td>' + x.fldRemarks + '</td>';
+                        // longString += '<td><a onclick=sfunc("' + x.fldCtrlNo + '")><span class="badge badge-pill blue">View</span></a></td>';
+                        // longString += '</tr>';
+                        yz.push(x);
                     } else {
                         if (parseInt(CheckData(x.fldCtrlNo).fldNotifySupply) > 0) {
-                            longString += '<tr>';
-                            longString += '<td>' + x.fldCtrlNo + '</td>';
-                            longString += '<td>' + x.fldFacility + '</td>';
-                            longString += '<td>' + x.fldUserID + '</td>';
-                            longString += '<td>' + x.fldEventType + '</td>';
-                            longString += '<td>' + x.fldRemarks + '</td>';
-                            longString += '<td><a onclick=sfunc("' + x.fldCtrlNo + '")><span class="badge badge-pill blue">View</span></a></td>';
-                            longString += '</tr>';
+                            // longString += '<tr>';
+                            // longString += '<td>' + x.fldCtrlNo + '</td>';
+                            // longString += '<td>' + x.fldFacility + '</td>';
+                            // longString += '<td>' + x.fldUserID + '</td>';
+                            // longString += '<td>' + x.fldEventType + '</td>';
+                            // longString += '<td>' + x.fldRemarks + '</td>';
+                            // longString += '<td><a onclick=sfunc("' + x.fldCtrlNo + '")><span class="badge badge-pill blue">View</span></a></td>';
+                            // longString += '</tr>';
+                            yz.push(x);
                         }
                     }
                 }
             });
 
-            $("#tbl_items").html(longString);
+            callDt(yz);
         });
     }
 
 
     if (uLog.fldDept == "MIS") {
         updateType = "Accepted";
-        o.read("tbl_reservations?ORDERBY=fldCtrlNo DESC").then(data => {
+        o.read("fullfunc/tbl_reservations").then(data => {
             let longString = "";
+            let yz = [];
             data.map(x => {
                 if ((x.fldRemarks == 'Resend' || x.fldRemarks == 'Finalizing' || x.fldRemarks == 'Accepted' || x.fldRemarks == 'Cancelled' || x.fldRemarks == 'Rejected') && parseInt(x.fldApprovalCount) > 1) {
                     if (x.fldRemarks != 'Rejected') {
-                        longString += '<tr>';
-                        longString += '<td>' + x.fldCtrlNo + '</td>';
-                        longString += '<td>' + x.fldFacility + '</td>';
-                        longString += '<td>' + x.fldUserID + '</td>';
-                        longString += '<td>' + x.fldEventType + '</td>';
-                        longString += '<td>' + x.fldRemarks + '</td>';
-                        longString += '<td><a onclick=sfunc("' + x.fldCtrlNo + '")><span class="badge badge-pill blue">View</span></a></td>';
-                        longString += '</tr>';
+                        // longString += '<tr>';
+                        // longString += '<td>' + x.fldCtrlNo + '</td>';
+                        // longString += '<td>' + x.fldFacility + '</td>';
+                        // longString += '<td>' + x.fldUserID + '</td>';
+                        // longString += '<td>' + x.fldEventType + '</td>';
+                        // longString += '<td>' + x.fldRemarks + '</td>';
+                        // longString += '<td><a onclick=sfunc("' + x.fldCtrlNo + '")><span class="badge badge-pill blue">View</span></a></td>';
+                        // longString += '</tr>';
+                        yz.push(x);
                     } else {
                         if (parseInt(CheckData(x.fldCtrlNo).fldNotifyMIS) > 0) {
-                            longString += '<tr>';
-                            longString += '<td>' + x.fldCtrlNo + '</td>';
-                            longString += '<td>' + x.fldFacility + '</td>';
-                            longString += '<td>' + x.fldUserID + '</td>';
-                            longString += '<td>' + x.fldEventType + '</td>';
-                            longString += '<td>' + x.fldRemarks + '</td>';
-                            longString += '<td><a onclick=sfunc("' + x.fldCtrlNo + '")><span class="badge badge-pill blue">View</span></a></td>';
-                            longString += '</tr>';
+                            // longString += '<tr>';
+                            // longString += '<td>' + x.fldCtrlNo + '</td>';
+                            // longString += '<td>' + x.fldFacility + '</td>';
+                            // longString += '<td>' + x.fldUserID + '</td>';
+                            // longString += '<td>' + x.fldEventType + '</td>';
+                            // longString += '<td>' + x.fldRemarks + '</td>';
+                            // longString += '<td><a onclick=sfunc("' + x.fldCtrlNo + '")><span class="badge badge-pill blue">View</span></a></td>';
+                            // longString += '</tr>';
+                            yz.push(x);
                         }
                     }
                 }
             });
-            $("#tbl_items").html(longString);
+
+            callDt(yz);
+
+
         });
+
     }
 
     if (uLog.fldDept == "Security" || uLog.fldDept == "Maintenance") {
         updateType = "Accepted";
         o.read("tbl_reservations?ORDERBY=fldCtrlNo DESC").then(data => {
-            let longString = "";
+            let yz = [];
             data.map(x => {
-                if ((x.fldRemarks == 'Pending' || x.fldRemarks == 'Accepted' || x.fldRemarks == 'Cancelled' || x.fldRemarks == 'Rejected') && parseInt(x.fldApprovalCount) > 1) {
-                    longString += '<tr>';
-                    longString += '<td>' + x.fldCtrlNo + '</td>';
-                    longString += '<td>' + x.fldFacility + '</td>';
-                    longString += '<td>' + x.fldUserID + '</td>';
-                    longString += '<td>' + x.fldEventType + '</td>';
-                    longString += '<td>' + x.fldRemarks + '</td>';
-                    longString += '<td><a onclick=sfunc("' + x.fldCtrlNo + '")><span class="badge badge-pill blue">View</span></a></td>';
-                    longString += '</tr>';
+                if ((x.fldRemarks == 'Resend' || x.fldRemarks == 'Finalizing' || x.fldRemarks == 'Accepted' || x.fldRemarks == 'Cancelled' || x.fldRemarks == 'Rejected') && parseInt(x.fldApprovalCount) > 1) {
+                    if (x.fldRemarks != 'Rejected') {
+                        // longString += '<tr>';
+                        // longString += '<td>' + x.fldCtrlNo + '</td>';
+                        // longString += '<td>' + x.fldFacility + '</td>';
+                        // longString += '<td>' + x.fldUserID + '</td>';
+                        // longString += '<td>' + x.fldEventType + '</td>';
+                        // longString += '<td>' + x.fldRemarks + '</td>';
+                        // longString += '<td><a onclick=sfunc("' + x.fldCtrlNo + '")><span class="badge badge-pill blue">View</span></a></td>';
+                        // longString += '</tr>';
+                        yz.push(x);
+                    }
                 }
             });
-            $("#tbl_items").html(longString);
+
+            callDt(yz);
         });
     }
 
