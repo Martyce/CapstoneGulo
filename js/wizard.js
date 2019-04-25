@@ -156,7 +156,7 @@ setAllOthers = () => {
     datas.evtDet.k = $('#fc').val();
     datas.evtDet.l = $('#noUsher').val();
     datas.evtDet.m = getDate();
-    datas.evtDet.n = 'Processing';
+    datas.evtDet.n = 'Accepted';
     datas.evtDet.o = '1';
     datas.evtDet.p = '-';
 
@@ -176,7 +176,7 @@ getDate = () => {
     var m = currentDate.getMinutes();
     var s = currentDate.getSeconds();
 
-    return month + "/" + day + "/" + year + " @ " + h + ":" + m + ":" + s;
+    return month + "/" + day + "/" + year + " " + h + ":" + m + ":" + s;
 }
 
 
@@ -296,14 +296,14 @@ sendData = () => {
             b: datas.evtDet.d,
             c: datas.evtDet.e,
             d: getDate(),
-            e: "Processing",
+            e: "Accepted",
             f: 1,
             g: 1,
             h: 2,
-            i: 0,
-            j: 0,
-            k: 0,
-            l: 0
+            i: 2,
+            j: 2,
+            k: 2,
+            l: 2
         }
 
 

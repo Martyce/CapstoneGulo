@@ -63,7 +63,7 @@ addEmployee = () => {
             i: "Active"
         }
         console.log(x);
-        window.alert("Student Successfully Added");
+        window.alert("Employee Successfully Added");
         window.location.assign("users.html");
         o.rud("insert/tbl_gcuser", [x]);
     } else {

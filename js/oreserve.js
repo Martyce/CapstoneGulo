@@ -132,20 +132,24 @@ callDt = (yz = []) => {
 genPull = () => {
     if (uLog.Authorize == "Dean" || uLog.Authorize == "Department Head") {
         updateType = "In progress";
-        o.read("tbl_reservations/fldDepartment/" + uLog.fldDept + "?ORDERBY=fldCtrlNo DESC").then(data => {
+        o.read("fullfunc/tbl_reservations").then(data => {
             let longString = "";
+            let yz = [];
             data.map(x => {
-                longString += '<tr>';
-                longString += '<td>' + x.fldCtrlNo + '</td>';
-                longString += '<td>' + x.fldFacility + '</td>';
-                longString += '<td>' + x.fldUserID + '</td>';
-                longString += '<td>' + x.fldEventType + '</td>';
-                longString += '<td>' + x.fldRemarks + '</td>';
-                longString += '<td><a onclick=sfunc("' + x.fldCtrlNo + '")><span class="badge badge-pill blue">View</span></a></td>';
-                longString += '</tr>';
+                if (x.fldDepartment == uLog.fldDept) {
+                    // longString += '<tr>';
+                    // longString += '<td>' + x.fldRoomCtrlNo + '</td>';
+                    // longString += '<td>' + x.fldFacility + '</td>';
+                    // longString += '<td>' + x.fldUserID + '</td>';
+                    // longString += '<td>' + x.fldEventType + '</td>';
+                    // longString += '<td>' + x.fldRemarks + '</td>';
+                    // longString += '<td><a onclick=sfunc("' + x.fldRoomCtrlNo + '")><span class="badge badge-pill blue">View</span></a></td>';
+                    // longString += '</tr>';
+                    yz.push(x);
+                }
             });
 
-            $("#tbl_items").html(longString);
+            callDt(yz);
         });
     }
 
@@ -204,7 +208,7 @@ genPull = () => {
 
     if (uLog.fldDept == "Supply") {
         updateType = "Finalizing";
-        o.read("tbl_reservations?ORDERBY=fldCtrlNo DESC").then(data => {
+        o.read("fullfunc/tbl_reservations").then(data => {
             let longString = "";
             let yz = [];
             data.map(x => {

@@ -10,6 +10,7 @@
 	<link href="https://fonts.googleapis.com/css?family=Prompt" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
 	<link href="../assets/css/mdb.min.css" rel="stylesheet">
+	<link href="../assets/css/sweetalert.css" rel="stylesheet">
 	<link href="../assets/css/font-awesome.css" rel="stylesheet">
 
 	<link href="../assets/css/stepper.css" rel="stylesheet">
@@ -177,32 +178,27 @@
 				<!-- First row -->
 				<div class="row">
 					<!-- First column -->
-					<div class="col-lg-4 mb-4">
+					<div class="col-lg-3 mb-4">
 
 						<!--Card-->
 						<div class="card card-cascade narrower">
 
-							<!--Card image-->
-							<div class="view view-cascade gradient-card-header xcolor lighten-3">
-								<h5 class="mb-0 font-weight-bold">Edit Photo</h5>
-							</div>
-							<!--/Card image-->
 
-							<!-- Card content -->
-							<div class="card-body card-body-cascade text-center">
-								<img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-5.jpg" alt="User Photo"
-									class="z-depth-1 mb-3 mx-auto" />
+							<ul class="nav md-pills pills-primary flex-column" role="tablist" id="studentList">
+								<li class="nav-item">
+									<a class="nav-link active" data-toggle="tab" href="#p1" role="tab">
+										<i class="fa fa-user ml-2"></i>
+										Update your Profile
+									</a>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link" data-toggle="tab" href="#p2" role="tab">
+										<i class="fa fa-lock ml-2"></i>
+										Update Password
+									</a>
+								</li>
 
-								<p class="text-muted">
-									<small>Profile photo will be changed automatically</small>
-								</p>
-								<div class="row flex-center">
-									<button type="file" class="btn btn-info btn-rounded btn-sm">Upload New
-										Photo</button>
-									<br>
-									<button class="btn btn-danger btn-rounded btn-sm">Delete</button>
-								</div>
-							</div>
+							</ul>
 							<!-- /.Card content -->
 
 						</div>
@@ -211,108 +207,170 @@
 					</div>
 					<!-- /.First column -->
 					<!-- Second column -->
-					<div class="col-lg-8 mb-4">
 
-						<!--Card-->
-						<div class="card card-cascade narrower">
+					<div class="tab-content pt-0">
+						<div class="tab-pane fade show active" id="p1" role="tabpanel">
+							<div class="col-lg-12 mb-4">
 
-							<!--Card image-->
-							<div class="view view-cascade gradient-card-header xcolor lighten-3">
-								<h5 class="mb-0 font-weight-bold">Edit Account</h5>
+								<!--Card-->
+								<div class="card card-cascade narrower">
+
+									<!--Card image-->
+									<div class="view view-cascade gradient-card-header xcolor lighten-3">
+										<h5 class="mb-0 font-weight-bold">Account Settings</h5>
+									</div>
+									<!--/Card image-->
+									<!-- Card content -->
+									<div class="card-body card-body-cascade text-center">
+										<!-- Edit Form -->
+										<form>
+											<!--First row-->
+											<div class="row">
+												<!--First column-->
+												<div class="col-md-4">
+													<div class="md-form mb-0">
+														<input type="text" id="userdept" class="form-control validate"
+															value="Company, inc" disabled>
+														<label for="form1">Department</label>
+													</div>
+												</div>
+												<!--Second column-->
+												<div class="col-md-4">
+													<div class="md-form mb-0">
+														<input type="text" id="userfname" class="form-control validate">
+														<label for="form2" data-error="wrong" data-success="right">First
+															Name</label>
+													</div>
+												</div>
+
+												<!--First column-->
+												<div class="col-md-4">
+													<div class="md-form mb-0">
+														<input type="text" id="usermname" class="form-control validate">
+														<label for="form81" data-error="wrong"
+															data-success="right">Middle
+															Name</label>
+													</div>
+												</div>
+											</div>
+											<!--/.First row-->
+											<!--First row-->
+											<div class="row">
+												<!--Second column-->
+												<div class="col-md-4">
+													<div class="md-form mb-0">
+														<input type="text" id="userlname" class="form-control validate">
+														<label for="form82" data-error="wrong" data-success="right">Last
+															Name</label>
+													</div>
+												</div>
+												<div class="col-md-4">
+													<div class="md-form mb-0">
+														<input type="number" id="usercnum"
+															class="form-control validate">
+														<label for="form76">Contact Number</label>
+													</div>
+												</div>
+											</div>
+											<!--/.First row-->
+											<!--Second row-->
+											<div class="row">
+												<!--First column-->
+
+											</div>
+											<!--/.Second row-->
+											<!--Third row-->
+											<!--/.Third row-->
+											<!-- Fourth row -->
+											<div class="row">
+												<div class="col-md-12 text-center my-4">
+													<input type="button" value="Update Account"
+														class="btn btn-info btn-rounded" onClick="updateAcc()">
+												</div>
+											</div>
+											<!-- /.Fourth row -->
+										</form>
+										<!-- Edit Form -->
+									</div>
+									<!-- /.Card content -->
+
+								</div>
+								<!--/.Card-->
 							</div>
-							<!--/Card image-->
-
-							<!-- Card content -->
-							<div class="card-body card-body-cascade text-center">
-								<!-- Edit Form -->
-								<form>
-									<!--First row-->
-									<div class="row">
-										<!--First column-->
-										<div class="col-md-6">
-											<div class="md-form mb-0">
-												<input type="text" id="form1" class="form-control validate"
-													value="Company, inc" disabled>
-												<label for="form1" data-error="wrong"
-													data-success="right">Company</label>
-											</div>
-										</div>
-										<!--Second column-->
-										<div class="col-md-6">
-											<div class="md-form mb-0">
-												<input type="text" id="form2" class="form-control validate">
-												<label for="form2" data-error="wrong"
-													data-success="right">Username</label>
-											</div>
-										</div>
-									</div>
-									<!--/.First row-->
-									<!--First row-->
-									<div class="row">
-										<!--First column-->
-										<div class="col-md-6">
-											<div class="md-form mb-0">
-												<input type="text" id="form81" class="form-control validate">
-												<label for="form81" data-error="wrong" data-success="right">First
-													name</label>
-											</div>
-										</div>
-										<!--Second column-->
-										<div class="col-md-6">
-											<div class="md-form mb-0">
-												<input type="text" id="form82" class="form-control validate">
-												<label for="form82" data-error="wrong" data-success="right">Last
-													name</label>
-											</div>
-										</div>
-									</div>
-									<!--/.First row-->
-									<!--Second row-->
-									<div class="row">
-										<!--First column-->
-										<div class="col-md-6">
-											<div class="md-form mb-0">
-												<input type="email" id="form76" class="form-control validate">
-												<label for="form76">Email address</label>
-											</div>
-										</div>
-										<!--Second column-->
-										<div class="col-md-6">
-											<div class="md-form mb-0">
-												<input type="text" id="form77" class="form-control validate">
-												<label for="form77" data-error="wrong" data-success="right">Website
-													Address</label>
-											</div>
-										</div>
-									</div>
-									<!--/.Second row-->
-									<!--Third row-->
-									<div class="row">
-										<!--First column-->
-										<div class="col-md-12">
-											<div class="md-form mb-0">
-												<textarea type="text" id="form78" class="md-textarea form-control"
-													rows="3"></textarea>
-												<label for="form78">About me</label>
-											</div>
-										</div>
-									</div>
-									<!--/.Third row-->
-									<!-- Fourth row -->
-									<div class="row">
-										<div class="col-md-12 text-center my-4">
-											<input type="submit" value="Update Account"
-												class="btn btn-info btn-rounded">
-										</div>
-									</div>
-									<!-- /.Fourth row -->
-								</form>
-								<!-- Edit Form -->
-							</div>
-							<!-- /.Card content -->
-
 						</div>
-						<!--/.Card-->
+
+
+						<div class="tab-pane fade" id="p2" role="tabpanel">
+							<div class="col-lg-12 mb-4">
+
+								<!--Card-->
+								<div class="card card-cascade narrower">
+
+									<!--Card image-->
+									<div class="view view-cascade gradient-card-header xcolor lighten-3">
+										<h5 class="mb-0 font-weight-bold">Password</h5>
+									</div>
+									<!--/Card image-->
+									<!-- Card content -->
+									<div class="card-body card-body-cascade text-center">
+										<!-- Edit Form -->
+										<form>
+											<!--First row-->
+											<div class="row">
+												<!--First column-->
+												<div class="col-md-4">
+													<div class="md-form mb-0">
+														<input type="password" id="opass" class="form-control validate">
+														<label for="form1">Old Password</label>
+													</div>
+												</div>
+												<!--Second column-->
+												<div class="col-md-4">
+													<div class="md-form mb-0">
+														<input type="password" id="npass" class="form-control validate">
+														<label for="form2" data-error="wrong" data-success="right">New
+															Password</label>
+													</div>
+												</div>
+
+												<!--First column-->
+												<div class="col-md-4">
+													<div class="md-form mb-0">
+														<input type="password" id="cpass" class="form-control validate">
+														<label for="form81" data-error="wrong"
+															data-success="right">Re-Type New Password</label>
+													</div>
+												</div>
+											</div>
+											<!--/.First row-->
+											<!--First row-->
+											<!--/.First row-->
+											<!--Second row-->
+											<div class="row">
+												<!--First column-->
+
+											</div>
+											<!--/.Second row-->
+											<!--Third row-->
+											<!--/.Third row-->
+											<!-- Fourth row -->
+											<div class="row">
+												<div class="col-md-12 text-center my-4">
+													<input type="button" onClick="updatePass()" value="Update Password"
+														class="btn btn-info btn-rounded">
+												</div>
+											</div>
+											<!-- /.Fourth row -->
+										</form>
+										<!-- Edit Form -->
+									</div>
+									<!-- /.Card content -->
+
+								</div>
+								<!--/.Card-->
+							</div>
+						</div>
+
 					</div>
 					<!-- /.Second column -->
 				</div>
@@ -330,7 +388,12 @@
 <script type="text/javascript" src="../js/bootstrap.min.js"></script>
 <script type="text/javascript" src="../js/mdb.min.js"></script>
 <script type="text/javascript" src="../js/url.js"></script>
+<script type="text/javascript" src="../js/rud.js"></script>
+<script type="text/javascript" src="../js/updateAcc.js"></script>
+<script type="text/javascript" src="../js/sweetalert.min.js"></script>
 <script>
+	getUpdateset();
+	
 	// SideNav Initialization
 	$(".button-collapse").sideNav();
 	checkLogin();
