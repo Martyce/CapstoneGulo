@@ -1,0 +1,15 @@
+tr th, tr td {
+    padding: 15px;
+    border: 1px solid #000;
+}
+table tr td{
+	margin: 0px;
+	font-size: 20px;
+	text-align: right;
+}
+html, body{
+	font-family: 'Source Sans Pro', sans-serif;
+}
+table{
+	width: 80%;
+}

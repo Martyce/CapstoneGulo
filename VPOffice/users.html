@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title>GC Set Admin Side</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<link href="../assets/css/bootstrap.min.css" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Prompt" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+	<link href="../assets/css/mdb.min.css" rel="stylesheet">
+	<link href="../assets/css/font-awesome.css" rel="stylesheet">
+
+	<link href="../assets/css/stepper.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="../assets/css/style.css">
+</head>
+
+<body class="fixed-sn">
+
+	<!--Main Navigation-->
+	<header>
+
+		<!-- Sidebar navigation -->
+		<div id="slide-out" class="side-nav fixed sidenavb" style="height: 100%">
+			<ul class="custom-scrollbar">
+				<li class="logo-sn d-block waves-effect">
+					<div class="text-center">
+						<a class="pl-0 text-white" href="#"><i class="fa fa-dashboard"></i> Account Dashboard</a>
+					</div>
+				</li>
+				<!-- Card -->
+
+				<div class="card card-image d-none d-sm-block" style="background-image: url(../assets/img/gclogo.png);">
+
+					<!-- Content -->
+					<div class="text-white flex-center d-flex align-items-center rgba-black-strong py-5 px-4">
+						<div>
+							<div class="col-xl-5 col-md-4 mb-3 text-center float-left">
+							</div>
+							<div class="float-right">
+
+								<p>Welcome to GCSET!</p>
+							</div>
+						</div>
+					</div>
+					<!-- Content -->
+				</div>
+				<!-- Card -->
+				<!-- Side navigation links -->
+				<li>
+					<ul class="collapsible collapsible-accordion">
+						<li>
+							<a class="collapsible-header waves-effect arrow-r" href="wizard.html">
+								<i class="fa fa-plus"></i> Add New Reservation</a>
+						</li>
+						<li>
+							<a class="collapsible-header waves-effect arrow-r" href="wizard.html">
+								<i class="fa fa-cog"></i> Account Settings</a>
+						</li>
+						<li>
+							<a class="collapsible-header waves-effect arrow-r" href="index.html">
+								<i class="fa fa-bar-chart"></i> Data Analytics</a>
+						</li>
+						<li>
+							<a class="collapsible-header waves-effect arrow-r" href="users.html">
+								<i class="fa fa-users"></i>User Management</a>
+						</li>
+						<li>
+							<a class="collapsible-header waves-effect arrow-r" href="calendar.html">
+								<i class="fa fa-calendar"></i>Reservation Calendar</a>
+						</li>
+						<li>
+							<a class="collapsible-header waves-effect arrow-r">
+								<i class="fa fa-hand-pointer-o"></i> Reservation List
+								<i class="fa fa-angle-down rotate-icon"></i>
+							</a>
+							<div class="collapsible-body">
+								<ul class="list-unstyled">
+									<li>
+										<a class="collapsible-header waves-effect arrow-r" href="reservations.html">
+											<i class="fa fa-list"></i>Function Reservations List</a>
+									</li>
+									<li>
+										<a class="collapsible-header waves-effect arrow-r" href="roomreservations.html">
+											<i class="fa fa-list"></i>Rooms Reservations List</a>
+									</li>
+									<li>
+										<a class="collapsible-header waves-effect arrow-r" href="eqpreservations.html">
+											<i class="fa fa-list"></i>Equipment Reservations List</a>
+									</li>
+								</ul>
+							</div>
+
+						</li>
+						<li>
+							<a class="collapsible-header waves-effect arrow-r" href="reportsgenfunc.html">
+								<i class="fa fa-file"></i>Reports Generation</a>
+						</li>
+					</ul>
+				</li>
+				<!--/. Side navigation links -->
+			</ul>
+			<div class="sidenav-bg mask-strong"></div>
+		</div>
+		<!--/. Sidebar navigation -->
+
+		<!-- Navbar -->
+		<nav class="navbar fixed-top navbar-expand-lg scrolling-navbar double-nav navb">
+			<!-- SideNav slide-out button -->
+			<div class="float-left">
+				<a href="#" data-activates="slide-out" class="button-collapse black-text">
+					<i class="fa fa-bars text-white"></i>
+				</a>
+			</div>
+			<!-- Breadcrumb-->
+			<div class="breadcrumb-dn">
+				<p>Gordon College Scheduler for Event Tool</p>
+			</div>
+
+			<!--Navbar links-->
+			<ul class="nav navbar-nav nav-flex-icons ml-auto">
+
+				<!-- Dropdown -->
+				<li class="nav-item dropdown notifications-nav">
+
+					<div class="dropdown-menu dropdown-menu-right dropdown-primary"
+						aria-labelledby="navbarDropdownMenuLink">
+						<a class="dropdown-item" href="#">
+							<i class="fa fa-building mr-2" aria-hidden="true"></i>
+							<span>New Facilty Reservation</span>
+							<span class="float-right">
+								<i class="fa fa-clock-o" aria-hidden="true"></i> 1 min</span>
+						</a>
+						<a class="dropdown-item" href="#">
+							<i class="fa fa-wrench mr-2" aria-hidden="true"></i>
+							<span>Equipment Reservation</span>
+							<span class="float-right">
+								<i class="fa fa-clock-o" aria-hidden="true"></i> 33 min</span>
+						</a>
+						<a class="dropdown-item" href="#">
+							<i class="fa fa-wrench mr-2" aria-hidden="true"></i>
+							<span>Equipment Reservation</span>
+							<span class="float-right">
+								<i class="fa fa-clock-o" aria-hidden="true"></i> 53 min</span>
+						</a>
+						<a class="dropdown-item" href="#">
+							<i class="fa fa-home mr-2" aria-hidden="true"></i>
+							<span>Room Reservation</span>
+							<span class="float-right">
+								<i class="fa fa-clock-o" aria-hidden="true"></i> 53 min</span>
+						</a>
+					</div>
+				</li>
+				<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle waves-effect" onclick="uLogOut()" href="#" id="userDropdown"
+						data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						<i class="fa fa-sign-out"></i>
+						<span class="clearfix d-none d-sm-inline-block">Log Out</span>
+					</a>
+				</li>
+
+			</ul>
+			<!--/Navbar links-->
+		</nav>
+		<!-- /.Navbar -->
+
+	</header>
+	<!--Main Navigation-->
+
+	<!--Main layout-->
+	<main>
+
+
+		<div class="classic-tabs mx-2">
+
+			<ul class="nav green lighten-1" id="myClassicTabShadow" role="tablist">
+				<li class="nav-item">
+					<a class="nav-link  waves-light active show" id="profile-tab-classic-shadow" data-toggle="tab"
+						href="#profile-classic-shadow" role="tab" aria-controls="profile-classic-shadow"
+						aria-selected="true">Gordon College Students</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link waves-light" id="follow-tab-classic-shadow" data-toggle="tab"
+						href="#follow-classic-shadow" role="tab" aria-controls="follow-classic-shadow"
+						aria-selected="false">Gordon College Departments</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link waves-light" id="contact-tab-classic-shadow" data-toggle="tab"
+						href="#contact-classic-shadow" role="tab" aria-controls="contact-classic-shadow"
+						aria-selected="false">Outsiders</a>
+				</li>
+			</ul>
+
+			<div class="tab-content card" id="myClassicTabContentShadow">
+				<div class="tab-pane fade active show" id="profile-classic-shadow" role="tabpanel"
+					aria-labelledby="profile-tab-classic-shadow">
+					<section class="section float-right mb-3">
+						<input class="form-control" type="text" placeholder="Search" aria-label="Search">
+					</section>
+
+					<section class="float-left">
+						<div class="row d-flex justify-content-center modalWrapper">
+							<div class="text-center">
+								<a href="" class="btn btn-info btn-rounded btn-sm" data-toggle="modal"
+									data-target="#modalAdd">Add
+									<i class="fa fa-plus-square ml-1"></i>
+								</a>
+							</div>
+							<div class="text-center">
+								<!-- <a href="" class="btn btn-info btn-rounded btn-sm" data-toggle="modal" data-target="#modalAdd">Upload CSV
+									<i class="fa fa-upload ml-1"></i>
+								</a> -->
+							</div>
+						</div>
+					</section>
+					<section class="section">
+						<div class="table-responsive text-nowrap">
+							<!--Table-->
+							<table class="table table-striped table-hover" id="dtBasicExample">
+
+								<!--Table head-->
+								<thead class="color">
+									<tr>
+										<th>Student Number#</th>
+										<th>Full Name</th>
+										<th>Username</th>
+										<th>Department</th>
+										<th>Contact Number</th>
+										<th>Account Status</th>
+									</tr>
+								</thead>
+								<!--Table head-->
+
+								<!--Table body-->
+								<tbody id="stdtable">
+									<tr>
+										<th scope="row">1</th>
+										<td>Mart </td>
+										<td>Macion</td>
+										<td>Couter 1</td>
+										<td>Regular Employee</td>
+										<td>
+											<span class="badge badge-pill green">Online</span>
+										</td>
+									</tr>
+								</tbody>
+								<!--Table body-->
+
+
+							</table>
+							<!--Table-->
+						</div>
+					</section>
+				</div>
+				<div class="tab-pane fade" id="follow-classic-shadow" role="tabpanel"
+					aria-labelledby="follow-tab-classic-shadow">
+
+					<section class="section float-right mb-3">
+						<input class="form-control" type="text" placeholder="Search" aria-label="Search">
+					</section>
+
+					<section class="float-left">
+						<div class="row d-flex justify-content-center modalWrapper">
+							<div class="text-center">
+								<a href="" class="btn btn-info btn-rounded btn-sm" data-toggle="modal"
+									data-target="#modalAddDept">Add
+									<i class="fa fa-plus-square ml-1"></i>
+								</a>
+								<a href="" class="btn btn-warning btn-rounded btn-sm" data-toggle="modal"
+									data-target="#modalAdd">Upload CSV
+									<i class="fa fa-upload ml-1"></i>
+								</a>
+							</div>
+
+							<div class="text-center">
+								<!-- <a href="" class="btn btn-info btn-rounded btn-sm" data-toggle="modal" data-target="#modalAdd">Upload CSV
+									<i class="fa fa-upload ml-1"></i>
+								</a> -->
+							</div>
+						</div>
+					</section>
+					<section class="section">
+						<div class="table-responsive text-nowrap">
+							<!--Table-->
+							<table class="table table-striped table-hover" id="dtBasicExample">
+
+								<!--Table head-->
+								<thead class="color">
+									<tr>
+										<th>Employee Number#</th>
+										<th>Full Name</th>
+										<th>Username</th>
+										<th>Department</th>
+										<th>Position</th>
+										<th>Contact Number</th>
+										<th>Account Status</th>
+									</tr>
+								</thead>
+								<!--Table head-->
+
+								<!--Table body-->
+								<tbody id="emptable">
+									<tr>
+										<th scope="row">1</th>
+										<td>Mart </td>
+										<td>Macion</td>
+										<td>Couter 1</td>
+										<td>Regular Employee</td>
+										<td>
+											<span class="badge badge-pill green">Online</span>
+										</td>
+									</tr>
+								</tbody>
+								<!--Table body-->
+
+
+							</table>
+							<!--Table-->
+						</div>
+					</section>
+				</div>
+				<div class="tab-pane fade" id="contact-classic-shadow" role="tabpanel"
+					aria-labelledby="contact-tab-classic-shadow">
+
+					<div class="table-responsive text-nowrap">
+						<!--Table-->
+						<table class="table table-striped table-hover" id="dtBasicExample">
+
+							<!--Table head-->
+							<thead class="color">
+								<tr>
+									<th>User ID</th>
+									<th>Full Name</th>
+									<th>Email Address</th>
+									<th>Organization</th>
+									<th>Contact Number</th>
+									<th>Remarks</th>
+								</tr>
+							</thead>
+							<!--Table head-->
+
+							<!--Table body-->
+							<tbody id="outable">
+								<tr>
+									<th scope="row">1</th>
+									<td>Mart </td>
+									<td>Macion</td>
+									<td>Couter 1</td>
+									<td>Regular Employee</td>
+								</tr>
+							</tbody>
+							<!--Table body-->
+
+
+						</table>
+						<!--Table-->
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+		<div class="container-fluid">
+
+
+			<br>
+			<!--Section: Live preview-->
+			<section class="section float-left">
+				<span class="grey-text"> Showing 1 to 10 of 57 entries</span>
+			</section>
+			<section class="section float-right">
+				<nav aria-label="Page navigation example">
+					<ul class="pagination pg-blue">
+						<li class="page-item disabled">
+							<span class="page-link">Previous</span>
+						</li>
+						<li class="page-item">
+							<a class="page-link">1</a>
+						</li>
+						<li class="page-item active">
+							<span class="page-link">
+								2
+								<span class="sr-only">(current)</span>
+							</span>
+						</li>
+						<li class="page-item">
+							<a class="page-link">3</a>
+						</li>
+						<li class="page-item">
+							<a class="page-link">Next</a>
+						</li>
+					</ul>
+				</nav>
+			</section>
+			</section>
+			<!-- /Admin Table -->
+		</div>
+	</main>
+	<!-- /Main Layout -->
+
+	<!-- /Action Modal Button -->
+	<div class="modal fade addNewInputs" id="modalAdd" tabindex="-1" role="dialog" aria-labelledby="modalAdd"
+		aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header text-center">
+					<h4 class="modal-title w-100 font-weight-bold text-primary ml-5">Add new form</h4>
+					<button type="button" class="close text-primary" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body mx-3">
+					<div class="md-form mb-5">
+						<input type="text" id="stdno" class="form-control validate">
+						<label data-error="wrong" data-success="right" for="inputName">Student Number</label>
+					</div>
+
+					<div class="md-form mb-5">
+						<input type="text" id="stdfname" class="form-control validate">
+						<label data-error="wrong" data-success="right" for="inputPosition">Full Name</label>
+					</div>
+
+					<div class="md-form mb-5">
+						<input type="text" id="stduname" class="form-control validate">
+						<label data-error="wrong" data-success="right" for="inputOfficeInput">Username</label>
+					</div>
+
+					<div class="md-form mb-5">
+						<input type="password" id="stdpass" class="form-control validate">
+						<label data-error="wrong" data-success="right" for="inputAge">Password</label>
+					</div>
+
+					<div class="md-form mb-5">
+						<input type="password" id="stdcpass" class="form-control validate">
+						<label data-error="wrong" data-success="right" for="inputAge">Confirm Password</label>
+					</div>
+
+					<div class="md-form mb-5">
+						<input type="text" id="stddept" class="form-control validate">
+						<label data-error="wrong" data-success="right" for="inputSalary">Department</label>
+					</div>
+
+
+					<div class="md-form mb-5">
+						<input type="text" id="stdcont" class="form-control validate">
+						<label data-error="wrong" data-success="right" for="inputSalary">Contact Number</label>
+					</div>
+
+				</div>
+				<div class="modal-footer d-flex justify-content-center buttonAddFormWrapper">
+					<button class="btn btn-outline-primary btn-block buttonAdd" onclick="addStudent()">Add Student
+						<i class="fa fa-paper-plane-o ml-1"></i>
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<div class="modal fade addNewInputs" id="modalAddDept" tabindex="-1" role="dialog" aria-labelledby="modalAdd"
+		aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header text-center">
+					<h4 class="modal-title w-100 font-weight-bold text-primary ml-5">Add new form</h4>
+					<button type="button" class="close text-primary" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body mx-3">
+					<div class="md-form mb-5">
+						<input type="text" id="empno" class="form-control validate">
+						<label data-error="wrong" data-success="right" for="inputName">Employee Number</label>
+					</div>
+
+					<div class="md-form mb-5">
+						<input type="text" id="empfname" class="form-control validate">
+						<label data-error="wrong" data-success="right" for="inputPosition">Full Name</label>
+					</div>
+
+					<div class="md-form mb-5">
+						<input type="text" id="empuname" class="form-control validate">
+						<label data-error="wrong" data-success="right" for="inputOfficeInput">Username</label>
+					</div>
+
+					<div class="md-form mb-5">
+						<input type="password" id="emppass" class="form-control validate">
+						<label data-error="wrong" data-success="right" for="inputAge">Password</label>
+					</div>
+
+					<div class="md-form mb-5">
+						<input type="password" id="empcpass" class="form-control validate">
+						<label data-error="wrong" data-success="right" for="inputAge">Confirm Password</label>
+					</div>
+
+					<div class="md-form mb-5">
+						<select class="browser-default custom-select" id="empdept">
+							<option value="" disabled selected>Selec Department</option>
+							<option value="AcademicAffairs">Academic Affairs</option>
+							<option value="Clinic">College Clinic</option>
+							<option value="Registrar">College Regsitrar</option>
+							<option value="CAHS">College of Allied Health Studies</option>
+							<option value="CBA">College of Business and Accountancy</option>
+							<option value="CCS">College of Computer Studies</option>
+							<option value="CEAS">College of Education, Arts and Sciences</option>
+							<option value="CHTM">College of Hospitality and Tourism Management</option>
+							<option value="CollegeLibrary">Collge Library</option>
+							<option value="DisciplineUnit">Discipline Unit</option>
+							<option value="FinanceOffice">Finance Office</option>
+							<option value="Guidance">Guidance and Admission Unit</option>
+							<option value="HRM">Human Resources Management Unit</option>
+							<option value="IGS">Institute of Graduate Studies</option>
+							<option value="IHKS">Institute of Human Kinetics</option>
+							<option value="Maintenance">Janitorial and Maintenance</option>
+							<option value="MIS">Management and Information System Unit</option>
+							<option value="NSTP">National Service Training Program</option>
+							<option value="Security">Security Services Unit</option>
+							<option value="SHS">Senior High School</option>
+							<option value="Supply">Supply Services Unit</option>
+							<option value="VPOffice">Vice President's Office</option>
+							<option value="TechVoc">Vocational & Technical Education Office</option>
+						</select>
+					</div>
+
+
+
+					<div class="md-form mb-5">
+						<input type="text" id="empcont" class="form-control validate">
+						<label data-error="wrong" data-success="right" for="inputSalary">Contact Number</label>
+					</div>
+
+
+					<div class="md-form mb-5">
+						<select class="browser-default custom-select" id="emppos">
+							<option value="" disabled selected>Position</option>
+							<option value="Custodian">Custodian</option>
+							<option value="Faculty">Faculty Member</option>
+							<option value="Officer">Officer</option>
+							<option value="Dean">Dean</option>
+							<option value="Department Head">Department Head</option>
+						</select>
+					</div>
+
+
+				</div>
+				<div class="modal-footer d-flex justify-content-center buttonAddFormWrapper">
+					<button class="btn btn-outline-primary btn-block buttonAdd" onclick="addEmployee()">Add New Employee
+						<i class="fa fa-paper-plane-o ml-1"></i>
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- <form id="uploads_csv" enctype="multipart/form-data">
+		<input id="file" type="file" name="file">
+		<button type="submit" class="btn"></button>
+	</form> -->
+
+	<div class="modal fade modalEditClass" id="modalEdit" tabindex="-1" role="dialog" aria-hidden="true">
+
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header text-center">
+					<h4 class="modal-title w-100 font-weight-bold text-secondary ml-5">Edit form</h4>
+					<button type="button" class="close text-secondary" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body mx-3">
+					<div class="md-form mb-5">
+						<input type="text" id="formNameEdit" class="form-control validate">
+						<label data-error="wrong" data-success="right" for="formNameEdit">Name</label>
+					</div>
+
+					<div class="md-form mb-5">
+						<input type="text" id="formPositionEdit" class="form-control validate">
+						<label data-error="wrong" data-success="right" for="formPositionEdit">Position</label>
+					</div>
+
+					<div class="md-form mb-5">
+						<input type="text" id="formOfficeEdit" class="form-control validate">
+						<label data-error="wrong" data-success="right" for="formOfficeEdit">Office</label>
+					</div>
+
+					<div class="md-form mb-5">
+						<input type="text" id="formAgeEdit" class="form-control validate">
+						<label data-error="wrong" data-success="right" for="formAgeEdit">Age</label>
+					</div>
+
+					<div class="md-form mb-5">
+						<input type="text" id="formDateEdit" class="form-control datepicker">
+						<label data-error="wrong" data-success="right" for="formDateEdit">Date</label>
+					</div>
+
+					<div class="md-form mb-5">
+						<input type="text" id="formSalaryEdit" class="form-control validate">
+						<label data-error="wrong" data-success="right" for="formSalaryEdit">Salary</label>
+					</div>
+
+
+				</div>
+				<div class="modal-footer d-flex justify-content-center editInsideWrapper">
+					<button class="btn btn-outline-secondary btn-block editInside" data-dismiss="modal">Edit form
+						<i class="fa fa-paper-plane-o ml-1"></i>
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<!-- Admin Table -->
+
+</body>
+
+<script type="text/javascript" src="../js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="../js/popper.min.js"></script>
+<script type="text/javascript" src="../js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../js/mdb.min.js"></script>
+<script type="text/javascript" src="../js/url.js"></script>
+<script type="text/javascript" src="../js/rud.js"></script>
+<script type="text/javascript" src="../js/user.js"></script>
+<script>
+	// SideNav Initialization
+	getStudent();
+	getEmployee();
+	checkLogin();
+	getOut();
+	$(".button-collapse").sideNav();
+
+	var container = document.querySelector('.custom-scrollbar');
+	Ps.initialize(container, {
+		wheelSpeed: 2,
+		wheelPropagation: true,
+		minScrollbarLength: 20
+	});
+</script>
+
+</html>

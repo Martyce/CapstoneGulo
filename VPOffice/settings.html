@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title>GC Set Admin Side</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<link href="../assets/css/bootstrap.min.css" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Prompt" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+	<link href="../assets/css/mdb.min.css" rel="stylesheet">
+	<link href="../assets/css/font-awesome.css" rel="stylesheet">
+
+	<link href="../assets/css/stepper.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="../assets/css/style.css">
+</head>
+
+<body class="fixed-sn">
+
+
+	<!--Main Navigation-->
+	<header>
+
+		<!-- Sidebar navigation -->
+		<div id="slide-out" class="side-nav fixed sidenavb" style="height: 100%">
+			<ul class="custom-scrollbar">
+				<li class="logo-sn d-block waves-effect">
+					<div class="text-center">
+						<a class="pl-0 text-white" href="#"><i class="fa fa-dashboard"></i> Account Dashboard</a>
+					</div>
+				</li>
+				<!-- Card -->
+
+				<div class="card card-image d-none d-sm-block" style="background-image: url(../assets/img/gclogo.png);">
+
+					<!-- Content -->
+					<div class="text-white flex-center d-flex align-items-center rgba-black-strong py-5 px-4">
+						<div>
+							<div class="col-xl-5 col-md-4 mb-3 text-center float-left">
+							</div>
+							<div class="float-right">
+
+								<p>Welcome to GCSET!</p>
+							</div>
+						</div>
+					</div>
+					<!-- Content -->
+				</div>
+				<!-- Card -->
+				<!-- Side navigation links -->
+				<li>
+					<ul class="collapsible collapsible-accordion">
+						<li>
+							<a class="collapsible-header waves-effect arrow-r" href="wizard.html">
+								<i class="fa fa-plus"></i> Add New Reservation</a>
+						</li>
+						<li>
+							<a class="collapsible-header waves-effect arrow-r" href="wizard.html">
+								<i class="fa fa-cog"></i> Account Settings</a>
+						</li>
+						<li>
+							<a class="collapsible-header waves-effect arrow-r" href="index.html">
+								<i class="fa fa-bar-chart"></i> Data Analytics</a>
+						</li>
+						<li>
+							<a class="collapsible-header waves-effect arrow-r" href="users.html">
+								<i class="fa fa-users"></i>User Management</a>
+						</li>
+						<li>
+							<a class="collapsible-header waves-effect arrow-r" href="calendar.html">
+								<i class="fa fa-calendar"></i>Reservation Calendar</a>
+						</li>
+						<li>
+							<a class="collapsible-header waves-effect arrow-r">
+								<i class="fa fa-hand-pointer-o"></i> Reservation List
+								<i class="fa fa-angle-down rotate-icon"></i>
+							</a>
+							<div class="collapsible-body">
+								<ul class="list-unstyled">
+									<li>
+										<a class="collapsible-header waves-effect arrow-r" href="reservations.html">
+											<i class="fa fa-list"></i>Function Reservations List</a>
+									</li>
+									<li>
+										<a class="collapsible-header waves-effect arrow-r" href="roomreservations.html">
+											<i class="fa fa-list"></i>Rooms Reservations List</a>
+									</li>
+									<li>
+										<a class="collapsible-header waves-effect arrow-r" href="eqpreservations.html">
+											<i class="fa fa-list"></i>Equipment Reservations List</a>
+									</li>
+								</ul>
+							</div>
+
+						</li>
+						<li>
+							<a class="collapsible-header waves-effect arrow-r" href="reportsgenfunc.html">
+								<i class="fa fa-file"></i>Reports Generation</a>
+						</li>
+					</ul>
+				</li>
+				<!--/. Side navigation links -->
+			</ul>
+			<div class="sidenav-bg mask-strong"></div>
+		</div>
+		<!--/. Sidebar navigation -->
+
+		<!-- Navbar -->
+		<nav class="navbar fixed-top navbar-expand-lg scrolling-navbar double-nav navb">
+			<!-- SideNav slide-out button -->
+			<div class="float-left">
+				<a href="#" data-activates="slide-out" class="button-collapse black-text">
+					<i class="fa fa-bars text-white"></i>
+				</a>
+			</div>
+			<!-- Breadcrumb-->
+			<div class="breadcrumb-dn">
+				<p>Gordon College Scheduler for Event Tool</p>
+			</div>
+
+			<!--Navbar links-->
+			<ul class="nav navbar-nav nav-flex-icons ml-auto">
+
+				<!-- Dropdown -->
+				<li class="nav-item dropdown notifications-nav">
+
+					<div class="dropdown-menu dropdown-menu-right dropdown-primary"
+						aria-labelledby="navbarDropdownMenuLink">
+						<a class="dropdown-item" href="#">
+							<i class="fa fa-building mr-2" aria-hidden="true"></i>
+							<span>New Facilty Reservation</span>
+							<span class="float-right">
+								<i class="fa fa-clock-o" aria-hidden="true"></i> 1 min</span>
+						</a>
+						<a class="dropdown-item" href="#">
+							<i class="fa fa-wrench mr-2" aria-hidden="true"></i>
+							<span>Equipment Reservation</span>
+							<span class="float-right">
+								<i class="fa fa-clock-o" aria-hidden="true"></i> 33 min</span>
+						</a>
+						<a class="dropdown-item" href="#">
+							<i class="fa fa-wrench mr-2" aria-hidden="true"></i>
+							<span>Equipment Reservation</span>
+							<span class="float-right">
+								<i class="fa fa-clock-o" aria-hidden="true"></i> 53 min</span>
+						</a>
+						<a class="dropdown-item" href="#">
+							<i class="fa fa-home mr-2" aria-hidden="true"></i>
+							<span>Room Reservation</span>
+							<span class="float-right">
+								<i class="fa fa-clock-o" aria-hidden="true"></i> 53 min</span>
+						</a>
+					</div>
+				</li>
+				<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle waves-effect" onclick="uLogOut()" href="#" id="userDropdown"
+						data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						<i class="fa fa-sign-out"></i>
+						<span class="clearfix d-none d-sm-inline-block">Log Out</span>
+					</a>
+				</li>
+
+			</ul>
+			<!--/Navbar links-->
+		</nav>
+		<!-- /.Navbar -->
+
+	</header>
+	<!--Main Navigation-->
+
+	<!--Main layout-->
+	<main>
+		<div class="container-fluid">
+			<!-- Section: Edit Account -->
+			<section class="section">
+				<!-- First row -->
+				<div class="row">
+					<!-- First column -->
+					<div class="col-lg-4 mb-4">
+
+						<!--Card-->
+						<div class="card card-cascade narrower">
+
+							<!--Card image-->
+							<div class="view view-cascade gradient-card-header xcolor lighten-3">
+								<h5 class="mb-0 font-weight-bold">Edit Photo</h5>
+							</div>
+							<!--/Card image-->
+
+							<!-- Card content -->
+							<div class="card-body card-body-cascade text-center">
+								<img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-5.jpg" alt="User Photo"
+									class="z-depth-1 mb-3 mx-auto" />
+
+								<p class="text-muted">
+									<small>Profile photo will be changed automatically</small>
+								</p>
+								<div class="row flex-center">
+									<button type="file" class="btn btn-info btn-rounded btn-sm">Upload New
+										Photo</button>
+									<br>
+									<button class="btn btn-danger btn-rounded btn-sm">Delete</button>
+								</div>
+							</div>
+							<!-- /.Card content -->
+
+						</div>
+						<!--/.Card-->
+
+					</div>
+					<!-- /.First column -->
+					<!-- Second column -->
+					<div class="col-lg-8 mb-4">
+
+						<!--Card-->
+						<div class="card card-cascade narrower">
+
+							<!--Card image-->
+							<div class="view view-cascade gradient-card-header xcolor lighten-3">
+								<h5 class="mb-0 font-weight-bold">Edit Account</h5>
+							</div>
+							<!--/Card image-->
+
+							<!-- Card content -->
+							<div class="card-body card-body-cascade text-center">
+								<!-- Edit Form -->
+								<form>
+									<!--First row-->
+									<div class="row">
+										<!--First column-->
+										<div class="col-md-6">
+											<div class="md-form mb-0">
+												<input type="text" id="form1" class="form-control validate"
+													value="Company, inc" disabled>
+												<label for="form1" data-error="wrong"
+													data-success="right">Company</label>
+											</div>
+										</div>
+										<!--Second column-->
+										<div class="col-md-6">
+											<div class="md-form mb-0">
+												<input type="text" id="form2" class="form-control validate">
+												<label for="form2" data-error="wrong"
+													data-success="right">Username</label>
+											</div>
+										</div>
+									</div>
+									<!--/.First row-->
+									<!--First row-->
+									<div class="row">
+										<!--First column-->
+										<div class="col-md-6">
+											<div class="md-form mb-0">
+												<input type="text" id="form81" class="form-control validate">
+												<label for="form81" data-error="wrong" data-success="right">First
+													name</label>
+											</div>
+										</div>
+										<!--Second column-->
+										<div class="col-md-6">
+											<div class="md-form mb-0">
+												<input type="text" id="form82" class="form-control validate">
+												<label for="form82" data-error="wrong" data-success="right">Last
+													name</label>
+											</div>
+										</div>
+									</div>
+									<!--/.First row-->
+									<!--Second row-->
+									<div class="row">
+										<!--First column-->
+										<div class="col-md-6">
+											<div class="md-form mb-0">
+												<input type="email" id="form76" class="form-control validate">
+												<label for="form76">Email address</label>
+											</div>
+										</div>
+										<!--Second column-->
+										<div class="col-md-6">
+											<div class="md-form mb-0">
+												<input type="text" id="form77" class="form-control validate">
+												<label for="form77" data-error="wrong" data-success="right">Website
+													Address</label>
+											</div>
+										</div>
+									</div>
+									<!--/.Second row-->
+									<!--Third row-->
+									<div class="row">
+										<!--First column-->
+										<div class="col-md-12">
+											<div class="md-form mb-0">
+												<textarea type="text" id="form78" class="md-textarea form-control"
+													rows="3"></textarea>
+												<label for="form78">About me</label>
+											</div>
+										</div>
+									</div>
+									<!--/.Third row-->
+									<!-- Fourth row -->
+									<div class="row">
+										<div class="col-md-12 text-center my-4">
+											<input type="submit" value="Update Account"
+												class="btn btn-info btn-rounded">
+										</div>
+									</div>
+									<!-- /.Fourth row -->
+								</form>
+								<!-- Edit Form -->
+							</div>
+							<!-- /.Card content -->
+
+						</div>
+						<!--/.Card-->
+					</div>
+					<!-- /.Second column -->
+				</div>
+				<!-- /.First row -->
+			</section>
+			<!-- /.Section: Edit Account -->
+		</div>
+	</main>
+	<!-- /Main Layout -->
+
+</body>
+
+<script type="text/javascript" src="../js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="../js/popper.min.js"></script>
+<script type="text/javascript" src="../js/bootstrap.min.js"></script>
+<script type="text/javascript" src="../js/mdb.min.js"></script>
+<script type="text/javascript" src="../js/url.js"></script>
+<script>
+	// SideNav Initialization
+	$(".button-collapse").sideNav();
+	checkLogin();
+	var container = document.querySelector('.custom-scrollbar');
+	Ps.initialize(container, {
+		wheelSpeed: 2,
+		wheelPropagation: true,
+		minScrollbarLength: 20
+	});
+</script>
+
+</html>
