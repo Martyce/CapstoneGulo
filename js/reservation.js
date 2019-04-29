@@ -13,7 +13,7 @@ loadAllDatas = () => {
     fetch(url + "fullfunc/tbl_reservations").then(res => res.json()).then(function (data) {
         let yz = [];
         data.map(x => {
-            if ((x.fldRemarks != "Pending" && x.fldRemarks != 'Renew') && parseInt(x.fldApprovalCount) > 0) {
+            if ((x.fldRemarks != "Pending" && x.fldRemarks != 'Renew' && x.fldRemarks != 'Accepted') && parseInt(x.fldApprovalCount) > 0) {
                 // longString += '<tr>';
                 // longString += '<td>' + x.fldCtrlNo + '</td>';
                 // longString += '<td>' + x.fldFacility + '</td>';
@@ -170,18 +170,29 @@ pullData = async (val) => {
                 }
             }
 
+            fetch(url + "tbl_gcuser/fldseId/" + user).then(res => res.json()).then(function (xdata) {
+
+                if(xdata.length == 0){
+                    $('#sxfname').html(x.fldUserID);
+                    $('#dept').html(x.fldDepartment);
+                    $('#cno').html(x.fldContactNumber);
+                    $('#email').html("-");
+                }
+
+                xdata.map(xy => {
+                    console.log(x);
+                    $('#sxfname').html(xy.fldFullname);
+                    $('#dept').html(xy.fldDepartment);
+                    $('#cno').html(xy.fldContactNo);
+                    $('#email').html(xy.fldUsername);
+                })
+
+            });
+
         });
     });
 
-    fetch(url + "tbl_users/fldUserID/" + user).then(res => res.json()).then(function (data) {
-        data.map(x => {
-            console.log(x);
-            $('#sxfname').html(x.fldFullName);
-            $('#dept').html(x.fldDept);
-            $('#cno').html(x.fldContactNo);
-            $('#email').html(x.fldEmailAdd);
-        })
-    });
+
 
     fetch(url + "tbl_reservedates/fldCtrlNo/" + val).then(res => res.json()).then(function (data) {
         let ls = "";
@@ -337,6 +348,6 @@ let getU = (param) => {
     return vars;
 }
 
-if(getU('ctrlNo') !== null){
+if (getU('ctrlNo') !== null) {
     sfunc(getU('ctrlNo'));
 }

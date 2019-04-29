@@ -6,6 +6,10 @@ body {
 
 
 }
+
+#tbl_items .odd, #tbl_items .even{
+    cursor: pointer;
+}
 .navb{
     background: rgba(76,235,121,1);
     background: -moz-linear-gradient(-45deg, rgba(76,235,121,1) 0%, rgba(35,231,100,1) 100%);

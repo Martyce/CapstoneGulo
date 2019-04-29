@@ -82,13 +82,38 @@ getStudent = () => {
             ls += '<td>' + y.fldUsername + '</td>';
             ls += '<td>' + y.fldDepartment + '</td>';
             ls += '<td>' + y.fldContactNo + '</td>';
-            ls += '<td>' + y.fldRemarks + '</td>';
-            ls += '<td><button class="btn btn-success"><i class="fa fa-check"></i></button><button class="btn btn-danger"><i class="fa fa-times"></i></button></td>';      
+            ls += '<td id="rseId' + y.fldseId + '">' + y.fldRemarks + '</td>';
+            if (y.fldRemarks == "Pending") {
+                ls += '<td id="seId' + y.fldseId + '"><button class="btn btn-success" onClick="updateStudent(\'Active\' , '+y.fldseId+')"><i class="fa fa-check"></i></button><button onClick="updateStudent(\'Inactive\' , '+y.fldseId+')" class="btn btn-danger"><i class="fa fa-times"></i></button></td>';
+            }
             ls += '<tr>';
         });
 
         ox('stdtable').innerHTML = ls;
     })
+}
+
+updateStudent = (val, seId) => {
+    if (val == "Active") {
+        let data = {
+            fldRemarks: 'Active'
+        }
+        o.rud("update/tbl_gcuser/fldseId/" + seId, [data]).then(x => {
+            console.log(x);
+            $('#seId'+seId).css("display", "none");
+            $('#rseId'+seId).html("Active");
+            
+        })
+    } else {
+        let data = {
+            fldRemarks: 'Inactive'
+        }
+        o.rud("update/tbl_gcuser/fldseId/" + seId, [data]).then(x => {
+            console.log(x);
+            $('#seId'+seId).css("display", "none");
+            $('#rseId'+seId).html("Inactive");
+        })
+    }
 }
 
 getEmployee = () => {
@@ -127,7 +152,7 @@ getOut = () => {
                 ls += '<td>' + y.fldDept + '</td>';
                 ls += '<td>' + y.fldContactNo + '</td>';
                 ls += '<td>' + y.fldRemarks + '</td>';
-                ls += '<td><button class="btn btn-warning"><i class="fa fa-pencil"></i></button></td>';                     
+                ls += '<td><button class="btn btn-warning"><i class="fa fa-pencil"></i></button></td>';
                 ls += '<tr>';
             }
         });

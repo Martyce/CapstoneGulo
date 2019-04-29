@@ -608,10 +608,15 @@
                     { 'data': 'fldEventDate' },
                     { 'data': 'fldEventFrom' },
                     { 'data': 'fldEventTo' },
-
                 ]
             }).clear().rows.add(yz).draw();
             $('.dataTables_length').addClass('bs-select');
+
+            $('#dtBasicExample tbody').on('click', 'tr', function () {
+                var data = tbl.row(this).data();
+                window.location.assign("reservations.html?ctrlNo="+data.fldCtrlNo);
+            });
+
 
             tbl.on('search.dt', function () {
                 //number of filtered rows

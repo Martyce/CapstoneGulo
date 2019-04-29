@@ -29,6 +29,7 @@ getUpdateset = () =>{
     $('#userdept').val(userDet.fldDept);    
     $('#userfname').val(fullName[0]);    
     $('#usermname').val(fullName[1]);    
+    
     $('#userlname').val(fullName[2]);    
     $('#usercnum').val(userDet.fldContactNo);    
 }
