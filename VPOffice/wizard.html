@@ -463,32 +463,66 @@
 
                                 <div class="col-lg-3">
                                     <div class="md-form form-group mt-5">
-                                        <input type="text" class="form-control" id="nox" placeholder="">
-                                        <label for="noIn">Space Rental Fee</label>
+                                        <input type="number" class="form-control" id="spacefee" placeholder="">
+                                        <label for="spacefee">Space Rental Fee</label>
                                     </div>
                                 </div>
 
                                 <div class="col-lg-3">
                                     <div class="md-form form-group mt-5">
-                                        <input type="text" class="form-control" id="x" placeholder="">
-                                        <label for="noIn">Table Fee</label>
-                                    </div>
-                                </div>
-
-
-                                <div class="col-lg-3">
-                                    <div class="md-form form-group mt-5">
-                                        <input type="text" class="form-control" id="x" placeholder="">
-                                        <label for="noIn">Chair Fee</label>
+                                        <input type="number" class="form-control" id="tablefee" placeholder="">
+                                        <label for="tablefee">Table Fee</label>
                                     </div>
                                 </div>
 
 
                                 <div class="col-lg-3">
                                     <div class="md-form form-group mt-5">
-                                        <input type="text" class="form-control" id="x" placeholder="">
-                                        <label for="noIn">Other Fee's</label>
+                                        <input type="number" class="form-control" id="chairfee" placeholder="">
+                                        <label for="chairfee">Chair Fee</label>
                                     </div>
+                                </div>
+                                <div class="col-lg-3">
+                                    <div class="md-form form-group mt-5">
+                                        <input type="number" class="form-control" id="projectorfee" placeholder="">
+                                        <label for="projectorfee">Chair Fee</label>
+                                    </div>
+                                </div>
+
+
+                                <div class="col-lg-12">
+                                    <h3 class="font-weight-bold pl-0 my-4">
+                                        <strong>Other Fee's</strong>
+                                    </h3>
+                                </div>
+
+                                <div class="col-lg-6">
+                                    <div class="md-form form-group mt-5">
+                                        <input type="text" class="form-control" id="feename" placeholder="">
+                                        <label for="gvip">Payment Name</label>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-4">
+                                    <div class="md-form form-group mt-5">
+                                        <input type="number" class="form-control" id="feeamt" placeholder="">
+                                        <label for="gvip">Amount</label>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-12" id="ofees">
+                                </div>
+
+                                <div class="col-md-3">
+                                    <button class="btn btn-blue btn-rounded" type="button" onclick="addFee()">Add
+                                        Fee</button>
+                                </div>
+
+
+                                <div class="col-lg-12">
+                                    <h3 class="font-weight-bold pl-0 my-4">
+                                        <strong>Guest and VIP's:</strong>
+                                    </h3>
                                 </div>
 
 

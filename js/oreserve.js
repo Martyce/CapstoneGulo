@@ -329,6 +329,26 @@ let xCheckData = (val) => {
     return false;
 }
 
+pullUser = (user) => {
+    fetch(url + "tbl_gcuser/fldseId/" + user).then(res => res.json()).then(function (xdata) {
+
+        if (xdata.length == 0) {
+            $('#sxfname').html(x.fldUserID);
+            $('#dept').html(x.fldDepartment);
+            $('#cno').html(x.fldContactNumber);
+            $('#email').html("-");
+        }
+
+        xdata.map(xy => {
+            $('#sxfname').html(xy.fldFullname);
+            $('#dept').html(xy.fldDepartment);
+            $('#cno').html(xy.fldContactNo);
+            $('#email').html(xy.fldUsername);
+        })
+
+    });
+}
+
 pullData = async (val) => {
 
 
@@ -346,6 +366,9 @@ pullData = async (val) => {
                 $('#evFac').html(x.fldFacility);
                 user = x.fldUserID;
                 $('#tNo').html(x.fldRoomCtrlNo);
+
+                pullUser(user);
+
             });
         });
 
@@ -375,6 +398,7 @@ pullData = async (val) => {
                 user = x.fldUserID;
                 $('#tNo').html(x.fldCtrlNo);
 
+                pullUser(user); 
                 if (uLog.Authorize == "Dean" || uLog.Authorize == "Department Head") {
                     $("#bxRm").css("display", "none");
                     if (x.fldRemarks == "Pending") {
@@ -460,6 +484,7 @@ let sfunc = (x) => {
     $("#adown").css("display", "none");
     ctrlNo = x;
     pullData(x);
+
 }
 
 let sback = () => {

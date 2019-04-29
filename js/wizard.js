@@ -3,7 +3,9 @@ let dtLen = 0;
 let allDt = [];
 let oItems = [];
 let oVip = [];
+let oFees = [];
 let xctrlNo = 0;
+let feeSend = {}
 let fc = new Crud();
 // SideNav Initialization
 $(".button-collapse").sideNav();
@@ -35,6 +37,8 @@ $(document).ready(function () { // everything comes under document.ready
 
     });
 });
+
+
 
 setCtrlNo = () => {
     fc.read("tbl_reservations").then(data => {
@@ -94,13 +98,6 @@ setAllEquip = () => {
             actrlNo: 0,
             b: "Arm Chairs",
             c: amc
-        });
-    }
-    if (xtbl != "0" && xtbl != "") {
-        datas.evtMat.push({
-            actrlNo: 0,
-            b: "Arm Chairs",
-            c: xtbl
         });
     }
 
@@ -165,6 +162,56 @@ setAllOthers = () => {
     console.log(datas);
 }
 
+setAllFees = () => {
+    console.log(oFees);
+    let finalDt = {
+        ctrlNo: xctrlNo,
+        dCharge: ""
+    };
+
+    if ($('#spacefee').val() != undefined || $('#spacefee').val() != "" || parseInt($('#spacefee').val()) != 0) {
+        let x = {
+            actrlNo: 0,
+            b: "Space Fee",
+            c: $('#spacefee').val()
+        }
+        oFees.push(x);
+    }
+
+    if ($('#tablefee').val() != undefined || $('#tablefee').val() != "" || parseInt($('#tablefee').val()) != 0) {
+        let x = {
+            actrlNo: 0,
+            b: "Table Fee",
+            c: $('#tablefee').val()
+        }
+        oFees.push(x);
+    }
+
+    if ($('#chairfee').val() != undefined || $('#chairfee').val() != "" || parseInt($('#chairfee').val()) != 0) {
+        let x = {
+            actrlNo: 0,
+            b: "Chair Fee",
+            c: $('#chairfee').val()
+        }
+        oFees.push(x);
+    }
+
+    if ($('#projectorfee').val() != undefined || $('#projectorfee').val() != "" || parseInt($('#projectorfee').val()) != 0) {
+        let x = {
+            actrlNo: 0,
+            b: "Projector Fee",
+            c: $('#projectorfee').val()
+        }
+        oFees.push(x);
+    }
+
+    oFees.map((x,i)=>{
+        finalDt.dCharge += i != oFees.length -1 ? oFees[i].b + " - " +  oFees[i].c + " | " : oFees[i].b + " - " +  oFees[i].c;
+    });
+    feeSend = finalDt;
+    console.log(finalDt);   
+}
+
 
 getDate = () => {
     let currentDate = new Date()
@@ -221,6 +268,7 @@ addVip = () => {
 
 }
 
+
 viewVip = () => {
     let ls = '';
     for (let i = 0; i < oVip.length; i++) {
@@ -233,6 +281,32 @@ viewVip = () => {
 remVip = (val) => {
     oVip.splice(val, 1);
     viewVip();
+}
+
+addFee = () => {
+    let x = {
+        actrlNo: 0,
+        b: $('#feename').val(),
+        c: $('#feeamt').val()
+    }
+    oFees.push(x);
+    $('#feeamt').val("");
+    $('#feename').val("");
+    viewFee();
+
+}
+
+viewFee = () => {
+    let ls = '';
+    for (let i = 0; i < oFees.length; i++) {
+        ls += '<div style="flex-center"><h4>' + oFees[i].b + ' - &#8369; ' + oFees[i].c + ' <a onclick="remFee(' + i + ')" style="color:red"><i class="fa fa-close"></i></a></h4> </div>';
+    }
+    $('#ofees').html(ls);
+}
+
+remFee = (val) => {
+    oFees.splice(val, 1);
+    viewFee();
 }
 
 viewData = () => {
@@ -284,6 +358,7 @@ setAll = () => {
     setAllDet();
     setAllEquip();
     setAllOthers();
+    setAllFees();
     viewData();
 }
 
@@ -321,6 +396,11 @@ sendData = () => {
             datas.rVip[i].actrlNo = xctrlNo
         })
 
+        oFees.map((x, i)=>{
+            oFees[i].actrlNo = xctrlNo;
+        });
+
+        feeSend.actrlNo = xctrlNo;
         fc.rud("insert/tbl_logsfunc/", [logsData]).then(y => {
 
         });
@@ -338,6 +418,11 @@ sendData = () => {
 
         });
 
+
+        fc.rud("insert/tbl_billings/", [feeSend]).then(y => {
+
+        });        
+
         fc.rud("insert/tbl_rvip/", datas.rVip).then(y => {
             swal({
                 title: "Your transaction has been made",
@@ -347,7 +432,7 @@ sendData = () => {
                 showConfirmButton: false
             },
                 function () {
-                    window.location.assign('reservations.html');
+                    window.location.assign('reservations.html?ctrlNo=' + xctrlNo);
                 }
             );
         });
