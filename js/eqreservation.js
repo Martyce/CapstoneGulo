@@ -7,7 +7,7 @@ let o = new Crud();
 uLog = JSON.parse(localStorage.userDet);
 
 loadAllDatas = () => {
-    fetch(url + "tbl_roomreservations?ORDERBY=fldRoomCtrlNo DESC").then(res => res.json()).then(function (data) {
+    fetch(url + "tbl_equipreservations?ORDERBY=fldEqID DESC").then(res => res.json()).then(function (data) {
         let yz = [];
         data.map(x => {
             if ((x.fldRemarks != "Pending" && x.fldRemarks != 'Renew') && parseInt(x.fldApprovalCount) > 0) {
@@ -32,11 +32,11 @@ loadAllDatas = () => {
             searching: true,
             data: yz,
             columns: [
-                { 'data': 'fldRoomCtrlNo' },
-                { 'data': 'fldFacility' },
+                { 'data': 'fldEqID' },
+                { 'data': 'fldDepartment' },
                 { 'data': 'fldUserID' },
-                { 'data': 'fldEventType' },
-                { 'data': 'fldDateTimeReq' },
+                { 'data': 'fldVenue' },
+                { 'data': 'fldDateBorrowFrom' },
                 {
                     'data': 'fldRemarks',
                     'render': function (stats) {
@@ -58,7 +58,7 @@ loadAllDatas = () => {
 
                 },
                 {
-                    'data': 'fldRoomCtrlNo',
+                    'data': 'fldEqID',
                     'render': function (id) {
                         return '<a onclick=sfunc("' + id + '") data-toggle="tooltip" title="Default tooltip"><span class="badge badge-pill blue">View</span></a>'
                     }
@@ -75,16 +75,15 @@ loadAllDatas = () => {
 
 
 pullData = async (val) => {
-    await fetch(url + "tbl_roomreservations/fldRoomCtrlNo/" + val).then(res => res.json()).then(function (data) {
+    await fetch(url + "tbl_equipreservations/fldEqID/" + val).then(res => res.json()).then(function (data) {
         console.log(data);
         data.map(x => {
-            $('#evName').html(x.fldEventName);
-            $('#evType').html(x.fldEventType);
-            $('#evDesc').html(x.fldEventDesc);
-            $('#evFac').html(x.fldFacility);
+            $('#evName').html(x.fldDepartment);
+            $('#evType').html(x.fldVenue);
+            $('#evDesc').html(x.fldDateBorrowFrom);
+            $('#evFac').html(x.fldDateBorrowTo);
             user = x.fldUserID;
-            $('#tNo').html(x.fldCtrlNo);
-            console.log(x.fldRemarks);
+            $('#tNo').html(x.fldEqID);
             if (x.fldRemarks == "Processing") {
                 $("#xRm").css("display", "block");
                 $("#yRm").css("display", "none");
@@ -101,20 +100,28 @@ pullData = async (val) => {
         });
     });
 
-    fetch(url + "tbl_users/fldUserID/" + user).then(res => res.json()).then(function (data) {
-        data.map(x => {
-            console.log(x);
-            $('#sxfname').html(x.fldFullName);
-            $('#dept').html(x.fldDept);
-            $('#cno').html(x.fldContactNo);
-            $('#email').html(x.fldEmailAdd);
+    fetch(url + "tbl_gcuser/fldseId/" + user).then(res => res.json()).then(function (xdata) {
+
+        if (xdata.length == 0) {
+            $('#sxfname').html(x.fldUserID);
+            $('#dept').html(x.fldDepartment);
+            $('#cno').html(x.fldContactNumber);
+            $('#email').html("-");
+        }
+
+        xdata.map(xy => {
+            $('#sxfname').html(xy.fldFullname);
+            $('#dept').html(xy.fldDepartment);
+            $('#cno').html(xy.fldContactNo);
+            $('#email').html(xy.fldUsername);
         })
+
     });
 
-    fetch(url + "tbl_roomreservedates/fldRoomCtrlNo/" + val).then(res => res.json()).then(function (data) {
+    fetch(url + "tbl_equipspec/fldEqID/" + val).then(res => res.json()).then(function (data) {
         let ls = "";
         data.map(x => {
-            ls += '<p class="text-left font-weight-light" id="fldTime">' + x.fldEventFrom + ' - ' + x.fldEventTo + ' @ ' + x.fldEventDate + '</p>'
+            ls += '<p class="text-left font-weight-light" id="fldTime">' + x.fldItemName + ' - ' + x.fldItemQty + ' - '+x.fldItemRemarks+'</p>'
         });
 
         $('#evtDts').html(ls);

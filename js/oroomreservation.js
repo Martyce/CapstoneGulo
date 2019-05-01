@@ -10,7 +10,7 @@ loadAllDatas = () => {
     fetch(url + "tbl_roomreservations?ORDERBY=fldRoomCtrlNo DESC").then(res => res.json()).then(function (data) {
         let yz = [];
         data.map(x => {
-            if ((x.fldRemarks != "Pending" && x.fldRemarks != 'Renew') && parseInt(x.fldApprovalCount) > 0) {
+            if ((x.fldRemarks != 'Renew')) {
                 // longString += '<tr>';
                 // longString += '<td>' + x.fldCtrlNo + '</td>';
                 // longString += '<td>' + x.fldFacility + '</td>';
@@ -24,7 +24,7 @@ loadAllDatas = () => {
         });
 
         $('#dtBasicExample').DataTable({
-            "order": [[ 0, "desc" ]],
+            "order": [[0, "desc"]],
             "scrollY": "490px",
             "scrollCollapse": true,
             'sort': true,
@@ -48,6 +48,10 @@ loadAllDatas = () => {
                         } else if (stats == "Accepted") {
                             color = 'text-success';
                             badge = 'badge badge-success'
+                        }
+                        else if (stats == "Pending") {
+                            color = 'text-success';
+                            badge = 'badge badge-primary'
                         } else {
                             color = 'text-warning';
                             badge = 'badge badge-warning'
@@ -64,7 +68,7 @@ loadAllDatas = () => {
                     }
                 }
             ]
-        }).clear().rows.add( yz ).draw();
+        }).clear().rows.add(yz).draw();
         $('.dataTables_length').addClass('bs-select');
     });
 
@@ -85,7 +89,7 @@ pullData = async (val) => {
             user = x.fldUserID;
             $('#tNo').html(x.fldCtrlNo);
             console.log(x.fldRemarks);
-            if (x.fldRemarks == "Processing") {
+            if (x.fldRemarks == "Pending") {
                 $("#xRm").css("display", "block");
                 $("#yRm").css("display", "none");
             } else {
@@ -101,14 +105,24 @@ pullData = async (val) => {
         });
     });
 
-    fetch(url + "tbl_users/fldUserID/" + user).then(res => res.json()).then(function (data) {
-        data.map(x => {
+
+    fetch(url + "tbl_gcuser/fldseId/" + user).then(res => res.json()).then(function (xdata) {
+
+        if (xdata.length == 0) {
+            $('#sxfname').html(x.fldUserID);
+            $('#dept').html(x.fldDepartment);
+            $('#cno').html(x.fldContactNumber);
+            $('#email').html("-");
+        }
+
+        xdata.map(xy => {
             console.log(x);
-            $('#sxfname').html(x.fldFullName);
-            $('#dept').html(x.fldDept);
-            $('#cno').html(x.fldContactNo);
-            $('#email').html(x.fldEmailAdd);
+            $('#sxfname').html(xy.fldFullname);
+            $('#dept').html(xy.fldDepartment);
+            $('#cno').html(xy.fldContactNo);
+            $('#email').html(xy.fldUsername);
         })
+
     });
 
     fetch(url + "tbl_roomreservedates/fldRoomCtrlNo/" + val).then(res => res.json()).then(function (data) {
@@ -160,8 +174,8 @@ getDate = () => {
 let submitData = (val) => {
     let data = {};
     let x = {};
-    if (val == "Processing") {
-        val = "Accepted";
+    if (val == "Pending") {
+        val = "Processing";
         data = {
             aCrl: ctrlNo,
             b: uLog.UserID,
@@ -175,7 +189,7 @@ let submitData = (val) => {
         };
         x = {
             fldRemarks: val,
-            fldApprovalCount: "2"
+            fldApprovalCount: "1"
         };
     } else if (val == "Cancel") {
         data = {
@@ -192,7 +206,7 @@ let submitData = (val) => {
         x = {
             fldRejected: $('#cancelReason').val(),
             fldRemarks: 'Cancelled',
-            fldApprovalCount: "1"
+            fldApprovalCount: "0"
         };
     } else {
         data = {
@@ -209,7 +223,7 @@ let submitData = (val) => {
         x = {
             fldRejected: $('#rejectReason').val(),
             fldRemarks: 'Rejected',
-            fldApprovalCount: "1"
+            fldApprovalCount: "0"
         };
     }
     console.log(x);
@@ -219,6 +233,12 @@ let submitData = (val) => {
         })
     });
 }
+
+let sback = () => {
+    $("#bdown").css("display", "none");
+    $("#adown").css("display", "block");
+}
+
 
 
 

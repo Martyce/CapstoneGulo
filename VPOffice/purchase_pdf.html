@@ -1,0 +1,232 @@
+<style>
+    .summary-container {
+        font-family: calibri;
+        width: 90%;
+        margin: 0 auto;
+        border: 2px solid black;
+        text-align: left;
+    }
+
+    .summary-container h1 {
+        font-size: 25px;
+    }
+
+    .summary-container h2 {
+        font-size: 22px;
+    }
+
+    .summary-container h3 {
+        font-size: 19px;
+    }
+
+    .summary-container h4 {
+        font-size: 16px;
+    }
+
+    .summary-container h5 {
+        font-size: 13px;
+    }
+
+    .summary-container h6 {
+        font-size: 10px;
+    }
+
+    .summary-header {
+        height: 100px;
+        border-bottom: 2px solid black;
+        text-align: center;
+    }
+
+    .summary-header h1,
+    .summary-header h6 {
+        margin: 0;
+        margin-top: 1px;
+    }
+
+    .summary-header #purchaseAgency {
+        border-bottom: 1px solid black;
+        width: 70%;
+        margin: 0 auto;
+        margin-top: 5px;
+    }
+
+    .summary-details {
+        width: 100%;
+        height: 80px;
+        padding: 0 2px;
+        padding-top: 10px;
+    }
+
+    .summary-details h3 {
+        margin: 0;
+    }
+
+    .summary-details .department-details {
+        width: 50%;
+        float: left;
+    }
+
+    .summary-details .order-details {
+        width: 30%;
+        float: left;
+    }
+
+    .summary-details .date {
+        width: 20%;
+        float: left;
+    }
+
+    .tablee {
+        width: 99%;
+        margin: 0 auto;
+    }
+
+    .tablee,
+    th,
+    td {
+        border: 1px solid black;
+        border-collapse: collapse;
+    }
+
+    .tablee th,
+    td {
+        /*padding: 15px;*/
+    }
+
+    .summary-purpose {
+        width: 100%;
+        height: 90px;
+        padding: 0 2px;
+        padding-top: 10px;
+    }
+
+    .summary-purpose h3 {
+        margin: 0;
+    }
+
+    .summary-purpose .purpose {
+        text-decoration: underline;
+    }
+
+    .summary-by {
+        height: 90px;
+        padding: 0 2px;
+        border-top: 2px solid black;
+        text-align: center;
+    }
+
+    .summary-by .signature,
+    .summary-by .requestedBy,
+    .summary-by .approvedBy {
+        width: 33%;
+        float: left;
+        margin: 0;
+    }
+
+    .summary-by .person {
+        width: 90%;
+        border-bottom: 1px solid black;
+        margin: 0 auto;
+        font-size: 14px;
+    }
+
+    .summary-by .person span {
+        font-size: 10px;
+    }
+
+</style>
+
+<div class="summary-container" id="printDiv mybody">
+    <div class="summary-header">
+        <b><h1>PURCHASE REQUEST</h1></b>
+        <h2 id="purchaseAgency"></h2>
+        <b><h6>AGENCY</h6></b>
+    </div>
+    <div class="summary-details">
+        <div class="department-details">
+            <h3><b>Department:</b> <span id="purchaseDept"></span></h3> <br>
+            <h3><b>Section:</b> <span id="purchaseSect"></span></h3>
+        </div>
+        <div class="order-details">
+            <h3><b>PR No:</b> <span id="PRno"></span></h3> <br>
+            <!-- <h3>SAI No: 05-12-212</h3> -->
+        </div>
+        <div class="date">
+            <h3><b>Date:</b> <span id="date"></span></h3> <br>
+            <!-- <h3>Date: 05-12-2018</h3> -->
+        </div>
+    </div>
+    <table class="tablee">
+        <b><tr>
+										<th>Unit</th>
+										<th>Item Description</th>
+										<th>Quantity</th>
+										<th>Unit Cost</th>
+										<th>Total Cost</th>
+									</tr></b>
+        <tbody id="itemsList">
+
+        </tbody>
+    </table>
+    <div class="summary-purpose">
+        <b><h3>Purpose:</h3></b>
+        <h3 class="purpose" id="purpose"></h3>
+    </div>
+    <div class="summary-by">
+        <div class="signature">
+            <b><h3>Signature:</h3></b>
+            <div class="margin"></div>
+            <h3 class="person"><span>SIGNATURE OVER PRINTED NAME</span></h3>
+        </div>
+        <div class="requestedBy">
+            <b><h3>Requested By:</h3></b>
+            <div class="margin"></div>
+            <h3 class="person"><span id="requestedBy"></span></h3>
+        </div>
+        <div class="approvedBy">
+            <b><h3>Approved By:</h3></b>
+            <div class="margin"></div>
+            <h3 class="person"><span id="approvedby"></span><br><span>SIGNATURE OVER PRINTED NAME</span></h3>
+        </div>
+    </div>
+
+</div>
+<script src="js/jquery-3.2.1.min.js"></script>
+<script src="../propertycard/js/jspdf.min.js"></script>
+<script src="../propertycard/js/printPdf.js"></script>
+<script>
+    $.getJSON("http://localhost/myapi/select/tbl_purchaserequest/fldPrNo/" + localStorage.idData, function(data) {
+        $("#purchaseDept").html(data[0].fldDept);
+        $("#PRno").html(data[0].fldPrNo);
+        $("#date").html(data[0].fldDate);
+        $("#requestedBy").html(data[0].fldRequestedByID);
+        $("#requestedBy").html(data[0].fldApprovedByID);
+        $("#purpose").html(data[0].fldPurpose);
+    });
+
+    var longString = "";
+    $.getJSON("http://localhost/myapi/select/tbl_purchaseitems/fldPrNo/" + localStorage.idData, function(data) {
+
+
+        for (let i = 0;i < data.length; i++) {
+
+
+            if (data[i].fldRemarks == "Pending") {
+                longString += '<tr>';
+                longString += '<td>' + data[i].fldUnit + '</td>';
+                longString += '<td>' + data[i].fldPNum + '</td>';
+                longString += '<td>' + data[i].fldQty + '</td>';
+                longString += '<td>' + data[i].fldUnitCost + '</td>';
+                longString += '<td>' + data[i].fldTotalCost + '</td>';
+                longString += '<tr>';
+            }
+
+
+        }
+        $("#itemsList").html(longString);
+
+
+
+    });
+
+</script>
