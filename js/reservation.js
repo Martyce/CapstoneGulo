@@ -281,7 +281,7 @@ let submitData = (val) => {
             fldRemarks: "Accepted",
             fldApprovalCount: "2"
         };
-    } else if (val == "Cancel") {
+    } else if (val == "Cancelled") {
         data = {
             aCrl: ctrlNo,
             b: uLog.UserID,
