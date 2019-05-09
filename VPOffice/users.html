@@ -197,16 +197,26 @@
 				<div class="tab-pane fade active show" id="profile-classic-shadow" role="tabpanel"
 					aria-labelledby="profile-tab-classic-shadow">
 					<section class="section float-right mb-3">
-						<input class="form-control" type="text" placeholder="Search" aria-label="Search">
+						<input class="form-control" type="text" id="stdsearch" onkeyup="filterStudent(this.value)"
+							placeholder="Search" aria-label="Search">
+					</section>
+					<section class="section float-right mb-3">
+						<select class="browser-default custom-select" id="stdfilterby">
+							<option value="fldseId">Student Number</option>
+							<option value="fldFullname">Full Name</option>
+							<option value="fldUsername">Username</option>
+							<option value="fldDepartment">Department</option>
+							<option value="fldRemarks">Account Status</option>
+						</select>
 					</section>
 
 					<section class="float-left">
 						<div class="row d-flex justify-content-center modalWrapper">
 							<div class="text-center">
-								<a href="" class="btn btn-info btn-rounded btn-sm" data-toggle="modal"
+								<!-- <a href="" class="btn btn-info btn-rounded btn-sm" data-toggle="modal"
 									data-target="#modalAdd">Add
 									<i class="fa fa-plus-square ml-1"></i>
-								</a>
+								</a> -->
 							</div>
 							<div class="text-center">
 								<!-- <a href="" class="btn btn-info btn-rounded btn-sm" data-toggle="modal" data-target="#modalAdd">Upload CSV
@@ -256,9 +266,18 @@
 				</div>
 				<div class="tab-pane fade" id="follow-classic-shadow" role="tabpanel"
 					aria-labelledby="follow-tab-classic-shadow">
-
 					<section class="section float-right mb-3">
-						<input class="form-control" type="text" placeholder="Search" aria-label="Search">
+						<input class="form-control" type="text" id="empsearch" onkeyup="filterEmployee(this.value)"
+							placeholder="Search" aria-label="Search">
+					</section>
+					<section class="section float-right mb-3">
+						<select class="browser-default custom-select" id="empfilterby">
+							<option value="fldseId">Employee Number</option>
+							<option value="fldFullname">Full Name</option>
+							<option value="fldUsername">Username</option>
+							<option value="fldDepartment">Department</option>
+							<option value="fldRemarks">Account Status</option>
+						</select>
 					</section>
 
 					<section class="float-left">
@@ -323,6 +342,20 @@
 				</div>
 				<div class="tab-pane fade" id="contact-classic-shadow" role="tabpanel"
 					aria-labelledby="contact-tab-classic-shadow">
+					<section class="section float-right mb-3">
+						<input class="form-control" type="text" id="empsearch" onkeyup="filterUser(this.value)"
+							placeholder="Search" aria-label="Search">
+					</section>
+					<section class="section float-right mb-3">
+						<select class="browser-default custom-select" id="userfilterby">
+							<option value="fldUserID">User ID</option>
+							<option value="fldFullName">Full Name</option>
+							<option value="fldEmailAdd">Email Address</option>
+							<option value="fldDept">Organization</option>
+							<option value="fldContactNo">Contact Number</option>
+							<option value="fldRemarks">Remarks</option>
+						</select>
+					</section>
 
 					<div class="table-responsive text-nowrap">
 						<!--Table-->
@@ -370,30 +403,7 @@
 			<section class="section float-left">
 				<span class="grey-text"> Showing 1 to 10 of 57 entries</span>
 			</section>
-			<section class="section float-right">
-				<nav aria-label="Page navigation example">
-					<ul class="pagination pg-blue">
-						<li class="page-item disabled">
-							<span class="page-link">Previous</span>
-						</li>
-						<li class="page-item">
-							<a class="page-link">1</a>
-						</li>
-						<li class="page-item active">
-							<span class="page-link">
-								2
-								<span class="sr-only">(current)</span>
-							</span>
-						</li>
-						<li class="page-item">
-							<a class="page-link">3</a>
-						</li>
-						<li class="page-item">
-							<a class="page-link">Next</a>
-						</li>
-					</ul>
-				</nav>
-			</section>
+
 			</section>
 			<!-- /Admin Table -->
 		</div>
@@ -444,7 +454,7 @@
 
 
 					<div class="md-form mb-5">
-						<input type="text" id="stdcont" class="form-control validate">
+						<input type="number" id="stdcont" class="form-control validate">
 						<label data-error="wrong" data-success="right" for="inputSalary">Contact Number</label>
 					</div>
 
@@ -471,28 +481,35 @@
 				</div>
 				<div class="modal-body mx-3">
 					<div class="md-form mb-5">
-						<input type="text" id="empno" class="form-control validate">
+						<input type="text" id="empno" placeholder="e.g., 6461" class="form-control validate">
 						<label data-error="wrong" data-success="right" for="inputName">Employee Number</label>
 					</div>
 
 					<div class="md-form mb-5">
-						<input type="text" id="empfname" class="form-control validate">
+						<input type="text" id="empfname" placeholder="e.g., John Doe" class="form-control validate">
 						<label data-error="wrong" data-success="right" for="inputPosition">Full Name</label>
 					</div>
 
 					<div class="md-form mb-5">
-						<input type="text" id="empuname" class="form-control validate">
+						<input type="text" id="empuname" placeholder="e.g., john_doe6461" class="form-control validate">
 						<label data-error="wrong" data-success="right" for="inputOfficeInput">Username</label>
 					</div>
 
 					<div class="md-form mb-5">
-						<input type="password" id="emppass" class="form-control validate">
+						<input type="password" id="emppass" placeholder="Minimum of 8 Characters"
+							class="form-control validate">
 						<label data-error="wrong" data-success="right" for="inputAge">Password</label>
 					</div>
 
 					<div class="md-form mb-5">
-						<input type="password" id="empcpass" class="form-control validate">
+						<input type="password" id="empcpass" placeholder="Make sure you typed it correctly"
+							class="form-control validate">
 						<label data-error="wrong" data-success="right" for="inputAge">Confirm Password</label>
+					</div>
+
+					<div class="md-form mb-5">
+						<input type="text" id="empcont" placeholder="e.g., 0910xxxxxxx" class="form-control validate">
+						<label data-error="wrong" data-success="right" for="inputSalary">Contact Number</label>
 					</div>
 
 					<div class="md-form mb-5">
@@ -524,12 +541,6 @@
 						</select>
 					</div>
 
-
-
-					<div class="md-form mb-5">
-						<input type="text" id="empcont" class="form-control validate">
-						<label data-error="wrong" data-success="right" for="inputSalary">Contact Number</label>
-					</div>
 
 
 					<div class="md-form mb-5">

@@ -26,25 +26,34 @@ $('#uploads_csv').on("submit", function (e) {
 });
 
 addStudent = () => {
-    let y = ox('stdpass').value;
-    let z = ox('stdcpass').value;
-    if (z == y) {
-        let x = {
-            a: ox('stdno').value,
-            b: ox('stdfname').value,
-            c: ox('stduname').value,
-            d: ox('stdpass').value,
-            e: ox('stddept').value,
-            f: ox('stdcont').value,
-            h: "Student",
-            i: "Active"
+
+    if (ox('stdno').value == "" || ox('stdpass').value == "" || ox('stduname').value == "" || ox('stdfname').value == "" || ox('stduname').value == "" || ox('stdcont').value == "") {
+        window.alert("Please make sure all required fields are filled out correctly");
+    }
+
+    else {
+
+
+        let y = ox('stdpass').value;
+        let z = ox('stdcpass').value;
+        if (z == y) {
+            let x = {
+                a: ox('stdno').value,
+                b: ox('stdfname').value,
+                c: ox('stduname').value,
+                d: ox('stdpass').value,
+                e: ox('stddept').value,
+                f: ox('stdcont').value,
+                h: "Student",
+                i: "Active"
+            }
+            console.log(x);
+            window.alert("Student Successfully Added");
+            window.location.assign("users.html");
+            o.rud("insert/tbl_gcuser", [x]);
+        } else {
+            window.alert("Password didn't Match");
         }
-        console.log(x);
-        window.alert("Student Successfully Added");
-        window.location.assign("users.html");
-        o.rud("insert/tbl_gcuser", [x]);
-    } else {
-        window.alert("Password didn't Match");
     }
 }
 
@@ -71,6 +80,7 @@ addEmployee = () => {
     }
 }
 
+
 getStudent = () => {
     o.read("tbl_gcuser/fldAccType/Student").then(x => {
         let ls = "";
@@ -84,13 +94,40 @@ getStudent = () => {
             ls += '<td>' + y.fldContactNo + '</td>';
             ls += '<td id="rseId' + y.fldseId + '">' + y.fldRemarks + '</td>';
             if (y.fldRemarks == "Pending") {
-                ls += '<td id="seId' + y.fldseId + '"><button class="btn btn-success" onClick="updateStudent(\'Active\' , '+y.fldseId+')"><i class="fa fa-check"></i></button><button onClick="updateStudent(\'Inactive\' , '+y.fldseId+')" class="btn btn-danger"><i class="fa fa-times"></i></button></td>';
+                ls += '<td id="seId' + y.fldseId + '"><button class="btn btn-success" onClick="updateStudent(\'Active\' , ' + y.fldseId + ')"><i class="fa fa-check"></i></button><button onClick="updateStudent(\'Inactive\' , ' + y.fldseId + ')" class="btn btn-danger"><i class="fa fa-times"></i></button></td>';
             }
             ls += '<tr>';
         });
 
         ox('stdtable').innerHTML = ls;
     })
+}
+
+
+filterStudent = (val) => {
+    o.read("tbl_gcuser/fldAccType/Student?LIKE=" + $('#stdfilterby').val() + " " + val).then(x => {
+        let ls = "";
+
+        x.map(y => {
+            ls += '<tr>';
+            ls += '<td>' + y.fldseId + '</td>';
+            ls += '<td>' + y.fldFullname + '</td>';
+            ls += '<td>' + y.fldUsername + '</td>';
+            ls += '<td>' + y.fldDepartment + '</td>';
+            ls += '<td>' + y.fldContactNo + '</td>';
+            ls += '<td id="rseId' + y.fldseId + '">' + y.fldRemarks + '</td>';
+            if (y.fldRemarks == "Pending") {
+                ls += '<td id="seId' + y.fldseId + '"><button class="btn btn-success" onClick="updateStudent(\'Active\' , ' + y.fldseId + ')"><i class="fa fa-check"></i></button><button onClick="updateStudent(\'Inactive\' , ' + y.fldseId + ')" class="btn btn-danger"><i class="fa fa-times"></i></button></td>';
+            }
+            ls += '<tr>';
+        });
+
+        ox('stdtable').innerHTML = ls;
+    })
+
+    if (val == "" || val == undefined) {
+        getStudent();
+    }
 }
 
 updateStudent = (val, seId) => {
@@ -100,9 +137,9 @@ updateStudent = (val, seId) => {
         }
         o.rud("update/tbl_gcuser/fldseId/" + seId, [data]).then(x => {
             console.log(x);
-            $('#seId'+seId).css("display", "none");
-            $('#rseId'+seId).html("Active");
-            
+            $('#seId' + seId).css("display", "none");
+            $('#rseId' + seId).html("Active");
+
         })
     } else {
         let data = {
@@ -110,8 +147,8 @@ updateStudent = (val, seId) => {
         }
         o.rud("update/tbl_gcuser/fldseId/" + seId, [data]).then(x => {
             console.log(x);
-            $('#seId'+seId).css("display", "none");
-            $('#rseId'+seId).html("Inactive");
+            $('#seId' + seId).css("display", "none");
+            $('#rseId' + seId).html("Inactive");
         })
     }
 }
@@ -139,6 +176,33 @@ getEmployee = () => {
 }
 
 
+filterEmployee = (val) => {
+    o.read("tbl_gcuser?LIKE=" + $('#empfilterby').val() + " " + val).then(x => {
+        let ls = "";
+
+        x.map(y => {
+            if (y.fldAccType != "Student") {
+                ls += '<tr>';
+                ls += '<td>' + y.fldseId + '</td>';
+                ls += '<td>' + y.fldFullname + '</td>';
+                ls += '<td>' + y.fldUsername + '</td>';
+                ls += '<td>' + y.fldDepartment + '</td>';
+                ls += '<td>' + y.fldContactNo + '</td>';
+                ls += '<td>' + y.fldAccType + '</td>';
+                ls += '<td>' + y.fldRemarks + '</td>';
+                ls += '<tr>';
+            }
+        });
+
+        ox('emptable').innerHTML = ls;
+    })
+
+    if (val == "" || val == undefined) {
+        getEmployee();
+    }
+}
+
+
 getOut = () => {
     o.read("tbl_users").then(x => {
         let ls = "";
@@ -159,6 +223,33 @@ getOut = () => {
 
         ox('outable').innerHTML = ls;
     })
+}
+
+
+filterUser = (val) => {
+    o.read("tbl_users?LIKE=" + $('#userfilterby').val() + " " + val).then(x => {
+        let ls = "";
+
+        x.map(y => {
+            if (y.fldAccType != "Student") {
+                ls += '<tr>';
+                ls += '<td>' + y.fldUserID + '</td>';
+                ls += '<td>' + y.fldFullName + '</td>';
+                ls += '<td>' + y.fldEmailAdd + '</td>';
+                ls += '<td>' + y.fldDept + '</td>';
+                ls += '<td>' + y.fldContactNo + '</td>';
+                ls += '<td>' + y.fldRemarks + '</td>';
+                ls += '<td><button class="btn btn-warning"><i class="fa fa-pencil"></i></button></td>';
+                ls += '<tr>';
+            }
+        });
+
+        ox('outable').innerHTML = ls;
+    })
+
+    if (val == "" || val == undefined) {
+        getOut();
+    }
 }
 
 ox = (val) => {
