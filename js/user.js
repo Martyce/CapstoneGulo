@@ -58,25 +58,36 @@ addStudent = () => {
 }
 
 addEmployee = () => {
-    let y = ox('emppass').value;
-    let z = ox('empcpass').value;
-    if (z == y) {
-        let x = {
-            a: ox('empno').value,
-            b: ox('empfname').value,
-            c: ox('empuname').value,
-            d: ox('emppass').value,
-            e: ox('empdept').value,
-            f: ox('empcont').value,
-            h: ox('emppos').value,
-            i: "Active"
+    if (ox('empno').value == "" || ox('emppass').value == "" || ox('empfname').value == "" || ox('empuname').value == "" || ox('empcont').value == "") {
+        window.alert("Please make sure all required fields are filled out correctly");
+    }
+
+    else {
+        let y = ox('emppass').value;
+        let z = ox('empcpass').value;
+        if (y.length < 8) {
+            window.alert("Password is Less than 8 characters");
+        } else {
+            if (z == y) {
+                let x = {
+                    a: ox('empno').value,
+                    b: ox('empfname').value,
+                    c: ox('empuname').value,
+                    d: ox('emppass').value,
+                    e: ox('empdept').value,
+                    f: ox('empcont').value,
+                    h: ox('emppos').value,
+                    i: "Active"
+                }
+                console.log(x);
+                window.alert("Employee Successfully Added");
+                o.rud("insert/tbl_gcuser", [x]).then(x => {
+                    window.location.assign("users.html");
+                });
+            } else {
+                window.alert("Password didn't Match");
+            }
         }
-        console.log(x);
-        window.alert("Employee Successfully Added");
-        window.location.assign("users.html");
-        o.rud("insert/tbl_gcuser", [x]);
-    } else {
-        window.alert("Password didn't Match");
     }
 }
 

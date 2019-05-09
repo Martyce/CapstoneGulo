@@ -156,6 +156,7 @@ pullData = async (val) => {
             $('#ushers').html(x.fldUshers);
             user = x.fldUserID;
             $('#tNo').html(x.fldCtrlNo);
+            $('#tremarks').html(x.fldRemarks);
 
             if (x.fldRemarks == "In progress") {
                 $("#xRm").css("display", "block");
@@ -223,6 +224,14 @@ pullData = async (val) => {
 
         $('#pending_tbldata').html(ls);
     });
+
+    fetch(url + "tbl_billings/fldCtrlNo/"+ val).then(res => res.json()).then(x=>{
+        if(x.length > 0){
+            $('#billbtn').css("display", "block");
+        } else {
+            $('#billbtn').css("display", "none");
+        }
+    })
 }
 
 
