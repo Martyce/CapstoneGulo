@@ -21,7 +21,7 @@ convDte = (val) => {
     return months[val];
 }
 
-getUser = () => {
+getUser = (val = "stat") => {
     fetch(url + "tbl_gcuser").then(res => res.json()).then(data => {
         let studentCount = 0;
         let employeeCount = 0;
@@ -65,20 +65,31 @@ getUser = () => {
         $('#meq').html(ls);
     })
 
-    fetch(url + "getdb.php?q=weeklystat").then(res => res.json()).then(data => {
+    fetch(url + "getdb.php?q=weekly" + val).then(res => res.json()).then(data => {
         let ls = "";
 
         let xlabels = [];
         let datas = [];
+        if (val == "stat") {
+            data.map((x, i) => {
+                xlabels.push("Week Number " + x.week);
+                datas.push(x.Count);
+                ls += '<tr>';
+                ls += '<td> Week ' + x.week + '</td>';
+                ls += '<td>' + x.Count + '</td>';
+                ls += '</tr>'
+            });
+        } else {
+            data.map((x, i) => {
+                xlabels.push("Week Number " + x.week);
+                datas.push(x.fldCharge);
+                ls += '<tr>';
+                ls += '<td> Week ' + x.week + '</td>';
+                ls += '<td>' + x.fldCharge + '</td>';
+                ls += '</tr>'
+            });
+        }
 
-        data.map((x, i) => {
-            xlabels.push("Week Number " + x.week);
-            datas.push(x.Count);
-            ls += '<tr>';
-            ls += '<td> Week ' + x.week + '</td>';
-            ls += '<td>' + x.Count + '</td>';
-            ls += '</tr>'
-        });
         $('#wstat').html(ls);
 
 
@@ -123,18 +134,30 @@ getUser = () => {
 
     });
 
-    fetch(url + "getdb.php?q=monthlystat").then(res => res.json()).then(data => {
+    fetch(url + "getdb.php?q=monthly" + val).then(res => res.json()).then(data => {
         let ls = "";
         let xlabels = [];
         let datas = [];
-        data.map((x, i) => {
-            xlabels.push(convDte(x.Month));
-            datas.push(x.Count);
-            ls += '<tr>';
-            ls += '<td>' + convDte(x.Month) + '</td>';
-            ls += '<td>' + x.Count + '</td>';
-            ls += '</tr>'
-        });
+        if (val == "stat") {
+            data.map((x, i) => {
+                xlabels.push(convDte(x.Month));
+                datas.push(x.Count);
+                ls += '<tr>';
+                ls += '<td>' + convDte(x.Month) + '</td>';
+                ls += '<td>' + x.Count + '</td>';
+                ls += '</tr>'
+            });
+        } else {
+            data.map((x, i) => {
+                xlabels.push(convDte(x.Month));
+                datas.push(x.fldCharge);
+                ls += '<tr>';
+                ls += '<td>' + convDte(x.Month) + '</td>';
+                ls += '<td>' + x.fldCharge + '</td>';
+                ls += '</tr>'
+            });
+        }
+
         $('#mstat').html(ls);
 
         var ctx = document.getElementById("labroom").getContext('2d');
@@ -178,18 +201,31 @@ getUser = () => {
     });
 
 
-    fetch(url + "getdb.php?q=yearlystat").then(res => res.json()).then(data => {
+    fetch(url + "getdb.php?q=yearly" + val).then(res => res.json()).then(data => {
         let ls = "";
         let xlabels = [];
         let datas = [];
-        data.map((x, i) => {
-            xlabels.push(x.Year);
-            datas.push(x.Count);
-            ls += '<tr>';
-            ls += '<td>' + x.Year + '</td>';
-            ls += '<td>' + x.Count + '</td>';
-            ls += '</tr>'
-        });
+        if (val == "stat") {
+
+            data.map((x, i) => {
+                xlabels.push(x.Year);
+                datas.push(x.Count);
+                ls += '<tr>';
+                ls += '<td>' + x.Year + '</td>';
+                ls += '<td>' + x.Count + '</td>';
+                ls += '</tr>'
+            });
+        } else {
+
+            data.map((x, i) => {
+                xlabels.push(x.Year);
+                datas.push(x.fldCharge);
+                ls += '<tr>';
+                ls += '<td>' + x.Year + '</td>';
+                ls += '<td>' + x.fldCharge + '</td>';
+                ls += '</tr>'
+            });
+        }
         $('#ystat').html(ls);
 
 

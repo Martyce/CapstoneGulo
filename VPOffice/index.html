@@ -282,20 +282,19 @@
                     <div class="col-lg-12">
                         <hr>
                     </div>
-
-                    <!-- <div class="col-lg-2 text-right" style='margin-top: 30px'>
+                    
+                    <div class="col-lg-2 text-right" style='margin-top: 30px'>
                         <label>Filter Reports for:</label>
                     </div>
                     <div class='col-lg-4'>
                         <div class="md-form mb-8">
-                            <select class="browser-default custom-select" id="emppos">
-                                <option value="Custodian">Function Rooms</option>
-                                <option value="Faculty">Rooms</option>
-                                <option value="Officer">Equipment</option>
+                            <select class="browser-default custom-select" onChange="getUser(this.value)" id="emppos">
+                                <option value="stat">Function Rooms</option>
+                                <option value="bill">Bills </option>
+       
                             </select>
                         </div>
-                    </div> -->
-                    <!-- MONTHLY REPORT -->
+                    </div> 
                     <div class="col-lg-12"></div>
                     <div class="col-lg-6">
 
@@ -329,7 +328,7 @@
                                 <thead class="xcolor">
                                     <tr>
                                         <th>Week Number</th>
-                                        <th>Total Request</th>
+                                        <th>Total</th>
                                     </tr>
                                 </thead>
                                 <!--Table head-->
@@ -392,8 +391,8 @@
                                 <!--Table head-->
                                 <thead class="xcolor">
                                     <tr>
-                                        <th>Monthly Request</th>
-                                        <th>Total Request</th>
+                                        <th>Monthly</th>
+                                        <th>Total</th>
                                     </tr>
                                 </thead>
                                 <!--Table head-->
@@ -455,7 +454,7 @@
                                 <thead class="xcolor">
                                     <tr>
                                         <th>Year</th>
-                                        <th>Total Request</th>
+                                        <th>Total</th>
                                     </tr>
                                 </thead>
                                 <!--Table head-->
