@@ -165,11 +165,11 @@ setAllOthers = () => {
 setAllFees = () => {
     console.log(oFees);
     let finalDt = {
-        ctrlNo: xctrlNo,
+        actrlNo: xctrlNo,
         dCharge: ""
     };
 
-    if ($('#spacefee').val() != undefined || $('#spacefee').val() != "" || parseInt($('#spacefee').val()) != 0) {
+    if (parseInt($('#spacefee').val()) != 0) {
         let x = {
             actrlNo: 0,
             b: "Space Fee",
@@ -178,7 +178,7 @@ setAllFees = () => {
         oFees.push(x);
     }
 
-    if ($('#tablefee').val() != undefined || $('#tablefee').val() != "" || parseInt($('#tablefee').val()) != 0) {
+    if (parseInt($('#tablefee').val()) != 0) {
         let x = {
             actrlNo: 0,
             b: "Table Fee",
@@ -187,7 +187,7 @@ setAllFees = () => {
         oFees.push(x);
     }
 
-    if ($('#chairfee').val() != undefined || $('#chairfee').val() != "" || parseInt($('#chairfee').val()) != 0) {
+    if (parseInt($('#chairfee').val()) != 0) {
         let x = {
             actrlNo: 0,
             b: "Chair Fee",
@@ -196,7 +196,7 @@ setAllFees = () => {
         oFees.push(x);
     }
 
-    if ($('#projectorfee').val() != undefined || $('#projectorfee').val() != "" || parseInt($('#projectorfee').val()) != 0) {
+    if (parseInt($('#projectorfee').val()) != 0) {
         let x = {
             actrlNo: 0,
             b: "Projector Fee",
