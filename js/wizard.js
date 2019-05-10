@@ -67,7 +67,7 @@ setAllDet = () => {
         d: $('#evtReq').val(),
         e: $('#evtOrg').val(),
         f: $('#evtCon').val(),
-        g: $('#evtType').val(),
+        g: $('#evtType').val() != "Others" ? $('#evtType').val() : $('#evtType_t').val(),
         h: $('#evtDesc').val(),
     }
 

@@ -255,6 +255,11 @@ let sAlert = () => {
     );
 }
 
+let viewBill = () =>{
+    localStorage.bill = ctrlNo;
+    window.open("billingreport.html", "_blank");
+}
+
 getDate = () => {
     let currentDate = new Date()
     let day = currentDate.getDate()

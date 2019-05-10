@@ -283,37 +283,52 @@
                                 </div>
                                 <div class="col-md-4">
                                     <div class="md-form form-group mt-5">
-                                        <input type="text" class="form-control" id="evtTitle" placeholder="">
+                                        <input type="text" class="form-control" placeholder="e.g., Juan Dela Cruz Seminar" id="evtTitle" placeholder="">
                                         <label for="evtTitle">Event Title</label>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="md-form form-group mt-5">
-                                        <input type="text" class="form-control" id="evtReq" placeholder="">
+                                        <input type="text" class="form-control" placeholder="e.g., Juan Dela Cruz" id="evtReq" placeholder="">
                                         <label for="evtReq">Requestor's Full Name</label>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="md-form form-group mt-5">
-                                        <input type="text" class="form-control" id="evtOrg" placeholder="">
+                                        <input type="text" class="form-control" placeholder="e.g., DILG" id="evtOrg" placeholder="">
                                         <label for="evtOrg">Organization Name</label>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="md-form form-group mt-5">
-                                        <input type="text" class="form-control" id="evtCon" placeholder="">
+                                        <input type="number" class="form-control"  placeholder="e.g., 09xxxxxxxxx" id="evtCon" placeholder="">
                                         <label for="evtCon">Contact Number</label>
                                     </div>
                                 </div>
                                 <div class="col-md-4 flex-center" style="position: relative; margin-top: 20px">
-                                    <select class="browser-default custom-select" id="evtType">
-                                        <option value="Seminar">Seminar</option>
-                                        <option value="Forum">Forum</option>
+                                    <select class="browser-default custom-select" onChange="getOth(this.value)"
+                                        id="evtType">
                                         <option value="Colloquim">Colloquim</option>
+                                        <option value="Conference">Conference</option>
+                                        <option value="Forum">Forum</option>
+                                        <option value="Seminar">Seminar</option>
+                                        <option value="Orientation">Orientation</option>
+                                        <option value="Training">Training</option>
+                                        <option value="Sport Activity">Sport Activity</option>
+                                        <option value="Others">Others</option>
                                     </select>
                                     <small for="xa" style="position: absolute; top: -20px; left: 17px">Event
                                         Type</small>
                                 </div>
+
+                                <div class="col-md-4" id="othersfield">
+                                    <div class="md-form form-group mt-5">
+                                        <input type="text" class="form-control"  placeholder="e.g., Trade Fairs, Awardings" id="evtType_t" placeholder="">
+                                        <label for="evtCon">Please be specific</label>
+                                    </div>
+                                </div>
+
+
                                 <div class="col-md-7">
                                     <div class="form-group">
                                         <label for="evtDesc">Event Description</label>
@@ -785,6 +800,16 @@
 
 <script>
     checkLogin();
+
+    getOth = (val) => {
+        if (val == "Others") {
+            $('#othersfield').css("display", "block");
+        } else {
+            $('#othersfield').css("display", "none");
+        }
+    }
+
+    getOth('a');
 </script>
 
 </html>
