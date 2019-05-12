@@ -501,6 +501,9 @@ let sAlert = () => {
         showConfirmButton: false
     },
         function () {
+            o.read("http://www.gordoncollegeccs-ssite.net/macionmart/samplepush/push.php?channel=VPOffice").then(x=>{
+
+            });
             window.location.assign('reservations.html')
         }
     );

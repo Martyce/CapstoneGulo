@@ -12,6 +12,7 @@
     <link href="../assets/css/mdb.min.css" rel="stylesheet">
     <link href="../assets/css/font-awesome.css" rel="stylesheet">
     <link href="../assets/css/stepper.css" rel="stylesheet">
+    <link href="../assets/css/sweetalert.css" rel="stylesheet">
 
     <link rel="stylesheet" type="text/css" href="../assets/css/style.css">
 
@@ -25,152 +26,151 @@
     <!--Main Navigation-->
     <header>
 
-            <!-- Sidebar navigation -->
-            <div id="slide-out" class="side-nav fixed sidenavb" style="height: 100%">
-                <ul class="custom-scrollbar">
-                    <li class="logo-sn d-block waves-effect">
-                        <div class="text-center">
-                            <a class="pl-0 text-white" href="#"><i class="fa fa-dashboard"></i> Account Dashboard</a>
-                        </div>
-                    </li>
-                    <!-- Card -->
-    
-                    <div class="card card-image d-none d-sm-block"
-                        style="background-image: url(../assets/img/gclogo.png);">
-    
-                        <!-- Content -->
-                        <div class="text-white flex-center d-flex align-items-center rgba-black-strong py-5 px-4">
-                            <div>
-                                <div class="col-xl-5 col-md-4 mb-3 text-center float-left">
-                                </div>
-                                <div class="float-right">
-    
-                                    <p>Welcome to GCSET!</p>
-                                </div>
+        <!-- Sidebar navigation -->
+        <div id="slide-out" class="side-nav fixed sidenavb" style="height: 100%">
+            <ul class="custom-scrollbar">
+                <li class="logo-sn d-block waves-effect">
+                    <div class="text-center">
+                        <a class="pl-0 text-white" href="#"><i class="fa fa-dashboard"></i> Account Dashboard</a>
+                    </div>
+                </li>
+                <!-- Card -->
+
+                <div class="card card-image d-none d-sm-block" style="background-image: url(../assets/img/gclogo.png);">
+
+                    <!-- Content -->
+                    <div class="text-white flex-center d-flex align-items-center rgba-black-strong py-5 px-4">
+                        <div>
+                            <div class="col-xl-5 col-md-4 mb-3 text-center float-left">
+                            </div>
+                            <div class="float-right">
+
+                                <p>Welcome to GCSET!</p>
                             </div>
                         </div>
-                        <!-- Content -->
                     </div>
-                    <!-- Card -->
-                    <!-- Side navigation links -->
-                    <li>
-                        <ul class="collapsible collapsible-accordion">
-                            <li>
-                                <a class="collapsible-header waves-effect arrow-r" href="wizard.html">
-                                    <i class="fa fa-plus"></i> Add New Reservation</a>
-                            </li>
-                            <li>
-                                <a class="collapsible-header waves-effect arrow-r" href="wizard.html">
-                                    <i class="fa fa-cog"></i> Account Settings</a>
-                            </li>
-                            <li>
-                                <a class="collapsible-header waves-effect arrow-r" href="index.html">
-                                    <i class="fa fa-bar-chart"></i> Data Analytics</a>
-                            </li>
-                            <li>
-                                <a class="collapsible-header waves-effect arrow-r" href="users.html">
-                                    <i class="fa fa-users"></i>User Management</a>
-                            </li>
-                            <li>
-                                <a class="collapsible-header waves-effect arrow-r" href="calendar.html">
-                                    <i class="fa fa-calendar"></i>Reservation Calendar</a>
-                            </li>
-                            <li>
-                                <a class="collapsible-header waves-effect arrow-r">
-                                    <i class="fa fa-hand-pointer-o"></i> Reservation List
-                                    <i class="fa fa-angle-down rotate-icon"></i>
-                                </a>
-                                <div class="collapsible-body">
-                                    <ul class="list-unstyled">
-                                        <li>
-                                            <a class="collapsible-header waves-effect arrow-r" href="reservations.html">
-                                                <i class="fa fa-list"></i>Function Reservations List</a>
-                                        </li>
-                                        <li>
-                                            <a class="collapsible-header waves-effect arrow-r" href="roomreservations.html">
-                                                <i class="fa fa-list"></i>Rooms Reservations List</a>
-                                        </li>
-                                        <li>
-                                            <a class="collapsible-header waves-effect arrow-r" href="eqpreservations.html">
-                                                <i class="fa fa-list"></i>Equipment Reservations List</a>
-                                        </li>
-                                    </ul>
-                                </div>
-    
-                            </li>
-                            <li>
-                                <a class="collapsible-header waves-effect arrow-r" href="reportsgenfunc.html">
-                                    <i class="fa fa-file"></i>Reports Generation</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <!--/. Side navigation links -->
-                </ul>
-                <div class="sidenav-bg mask-strong"></div>
+                    <!-- Content -->
+                </div>
+                <!-- Card -->
+                <!-- Side navigation links -->
+                <li>
+                    <ul class="collapsible collapsible-accordion">
+                        <li>
+                            <a class="collapsible-header waves-effect arrow-r" href="wizard.html">
+                                <i class="fa fa-plus"></i> Add New Reservation</a>
+                        </li>
+                        <li>
+                            <a class="collapsible-header waves-effect arrow-r" href="wizard.html">
+                                <i class="fa fa-cog"></i> Account Settings</a>
+                        </li>
+                        <li>
+                            <a class="collapsible-header waves-effect arrow-r" href="index.html">
+                                <i class="fa fa-bar-chart"></i> Data Analytics</a>
+                        </li>
+                        <li>
+                            <a class="collapsible-header waves-effect arrow-r" href="users.html">
+                                <i class="fa fa-users"></i>User Management</a>
+                        </li>
+                        <li>
+                            <a class="collapsible-header waves-effect arrow-r" href="calendar.html">
+                                <i class="fa fa-calendar"></i>Reservation Calendar</a>
+                        </li>
+                        <li>
+                            <a class="collapsible-header waves-effect arrow-r">
+                                <i class="fa fa-hand-pointer-o"></i> Reservation List
+                                <i class="fa fa-angle-down rotate-icon"></i>
+                            </a>
+                            <div class="collapsible-body">
+                                <ul class="list-unstyled">
+                                    <li>
+                                        <a class="collapsible-header waves-effect arrow-r" href="reservations.html">
+                                            <i class="fa fa-list"></i>Function Reservations List</a>
+                                    </li>
+                                    <li>
+                                        <a class="collapsible-header waves-effect arrow-r" href="roomreservations.html">
+                                            <i class="fa fa-list"></i>Rooms Reservations List</a>
+                                    </li>
+                                    <li>
+                                        <a class="collapsible-header waves-effect arrow-r" href="eqpreservations.html">
+                                            <i class="fa fa-list"></i>Equipment Reservations List</a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                        </li>
+                        <li>
+                            <a class="collapsible-header waves-effect arrow-r" href="reportsgenfunc.html">
+                                <i class="fa fa-file"></i>Reports Generation</a>
+                        </li>
+                    </ul>
+                </li>
+                <!--/. Side navigation links -->
+            </ul>
+            <div class="sidenav-bg mask-strong"></div>
+        </div>
+        <!--/. Sidebar navigation -->
+
+        <!-- Navbar -->
+        <nav class="navbar fixed-top navbar-expand-lg scrolling-navbar double-nav navb">
+            <!-- SideNav slide-out button -->
+            <div class="float-left">
+                <a href="#" data-activates="slide-out" class="button-collapse black-text">
+                    <i class="fa fa-bars text-white"></i>
+                </a>
             </div>
-            <!--/. Sidebar navigation -->
-    
-            <!-- Navbar -->
-            <nav class="navbar fixed-top navbar-expand-lg scrolling-navbar double-nav navb">
-                <!-- SideNav slide-out button -->
-                <div class="float-left">
-                    <a href="#" data-activates="slide-out" class="button-collapse black-text">
-                        <i class="fa fa-bars text-white"></i>
-                    </a>
-                </div>
-                <!-- Breadcrumb-->
-                <div class="breadcrumb-dn">
-                    <p>Gordon College Scheduler for Event Tool</p>
-                </div>
-    
-                <!--Navbar links-->
-                <ul class="nav navbar-nav nav-flex-icons ml-auto">
-    
-                    <!-- Dropdown -->
-                    <li class="nav-item dropdown notifications-nav">
-    
-                        <div class="dropdown-menu dropdown-menu-right dropdown-primary"
-                            aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item" href="#">
-                                <i class="fa fa-building mr-2" aria-hidden="true"></i>
-                                <span>New Facilty Reservation</span>
-                                <span class="float-right">
-                                    <i class="fa fa-clock-o" aria-hidden="true"></i> 1 min</span>
-                            </a>
-                            <a class="dropdown-item" href="#">
-                                <i class="fa fa-wrench mr-2" aria-hidden="true"></i>
-                                <span>Equipment Reservation</span>
-                                <span class="float-right">
-                                    <i class="fa fa-clock-o" aria-hidden="true"></i> 33 min</span>
-                            </a>
-                            <a class="dropdown-item" href="#">
-                                <i class="fa fa-wrench mr-2" aria-hidden="true"></i>
-                                <span>Equipment Reservation</span>
-                                <span class="float-right">
-                                    <i class="fa fa-clock-o" aria-hidden="true"></i> 53 min</span>
-                            </a>
-                            <a class="dropdown-item" href="#">
-                                <i class="fa fa-home mr-2" aria-hidden="true"></i>
-                                <span>Room Reservation</span>
-                                <span class="float-right">
-                                    <i class="fa fa-clock-o" aria-hidden="true"></i> 53 min</span>
-                            </a>
-                        </div>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle waves-effect" onclick="uLogOut()" href="#" id="userDropdown"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="fa fa-sign-out"></i>
-                            <span class="clearfix d-none d-sm-inline-block">Log Out</span>
+            <!-- Breadcrumb-->
+            <div class="breadcrumb-dn">
+                <p>Gordon College Scheduler for Event Tool</p>
+            </div>
+
+            <!--Navbar links-->
+            <ul class="nav navbar-nav nav-flex-icons ml-auto">
+
+                <!-- Dropdown -->
+                <li class="nav-item dropdown notifications-nav">
+
+                    <div class="dropdown-menu dropdown-menu-right dropdown-primary"
+                        aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item" href="#">
+                            <i class="fa fa-building mr-2" aria-hidden="true"></i>
+                            <span>New Facilty Reservation</span>
+                            <span class="float-right">
+                                <i class="fa fa-clock-o" aria-hidden="true"></i> 1 min</span>
                         </a>
-                    </li>
-    
-                </ul>
-                <!--/Navbar links-->
-            </nav>
-            <!-- /.Navbar -->
-    
-        </header>
+                        <a class="dropdown-item" href="#">
+                            <i class="fa fa-wrench mr-2" aria-hidden="true"></i>
+                            <span>Equipment Reservation</span>
+                            <span class="float-right">
+                                <i class="fa fa-clock-o" aria-hidden="true"></i> 33 min</span>
+                        </a>
+                        <a class="dropdown-item" href="#">
+                            <i class="fa fa-wrench mr-2" aria-hidden="true"></i>
+                            <span>Equipment Reservation</span>
+                            <span class="float-right">
+                                <i class="fa fa-clock-o" aria-hidden="true"></i> 53 min</span>
+                        </a>
+                        <a class="dropdown-item" href="#">
+                            <i class="fa fa-home mr-2" aria-hidden="true"></i>
+                            <span>Room Reservation</span>
+                            <span class="float-right">
+                                <i class="fa fa-clock-o" aria-hidden="true"></i> 53 min</span>
+                        </a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle waves-effect" onclick="uLogOut()" href="#" id="userDropdown"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fa fa-sign-out"></i>
+                        <span class="clearfix d-none d-sm-inline-block">Log Out</span>
+                    </a>
+                </li>
+
+            </ul>
+            <!--/Navbar links-->
+        </nav>
+        <!-- /.Navbar -->
+
+    </header>
     <!--Main Navigation-->
 
     <!--Main layout-->
@@ -210,9 +210,25 @@
 <script type="text/javascript" src="../js/Chart.bundle.min.js"></script>
 <script type="text/javascript" src="../js/moment.min.js"></script>
 <script type="text/javascript" src="../js/fullcalendar.min.js"></script>
+<script type="text/javascript" src="../js/sweetalert.js"></script>
 <script src="../js/url.js"></script>
 <script type="text/javascript" src="../js/rud.js"></script>
 <script type="text/javascript" src="../js/callCalendar.js"></script>
+<script src="https://js.pusher.com/4.3/pusher.min.js"></script>
+<script src="../js/navmain.js"></script>
+<script>
+
+
+    var pusher = new Pusher('e39e6791c472e636fb7f', {
+        cluster: 'ap1',
+        forceTLS: true
+    });
+
+    var channel = pusher.subscribe('VPOffice');
+    channel.bind('my-event', function (data) {
+        callTap();
+    });
+</script>
 <script>
     checkLogin();
     function getTime(val) {

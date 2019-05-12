@@ -11,6 +11,7 @@
     <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
     <link href="../assets/css/mdb.min.css" rel="stylesheet">
     <link href="../assets/css/font-awesome.css" rel="stylesheet">
+    <link href="../assets/css/sweetalert.css" rel="stylesheet">
 
     <link href="../assets/css/stepper.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="../assets/css/style.css">
@@ -31,8 +32,7 @@
                 </li>
                 <!-- Card -->
 
-                <div class="card card-image d-none d-sm-block"
-                    style="background-image: url(../assets/img/gclogo.png);">
+                <div class="card card-image d-none d-sm-block" style="background-image: url(../assets/img/gclogo.png);">
 
                     <!-- Content -->
                     <div class="text-white flex-center d-flex align-items-center rgba-black-strong py-5 px-4">
@@ -282,7 +282,7 @@
                     <div class="col-lg-12">
                         <hr>
                     </div>
-                    
+
                     <div class="col-lg-2 text-right" style='margin-top: 30px'>
                         <label>Filter Reports for:</label>
                     </div>
@@ -291,10 +291,10 @@
                             <select class="browser-default custom-select" onChange="getUser(this.value)" id="emppos">
                                 <option value="stat">Function Rooms</option>
                                 <option value="bill">Bills </option>
-       
+
                             </select>
                         </div>
-                    </div> 
+                    </div>
                     <div class="col-lg-12"></div>
                     <div class="col-lg-6">
 
@@ -582,12 +582,27 @@
 <script type="text/javascript" src="../js/popper.min.js"></script>
 <script type="text/javascript" src="../js/bootstrap.min.js"></script>
 <script type="text/javascript" src="../js/mdb.min.js"></script>
+<script type="text/javascript" src="../js/sweetalert.js"></script>
 <script type="text/javascript" src="../js/Chart.min.js"></script>
 <script type="text/javascript" src="../js/Chart.bundle.min.js"></script>
 <script type="text/javascript" src="../js/url.js"></script>
 <script type="text/javascript" src="../js/rud.js"></script>
 <script type="text/javascript" src="../js/stat.js"></script>
+<script src="https://js.pusher.com/4.3/pusher.min.js"></script>
+<script src="../js/navmain.js"></script>
+<script>
 
+
+    var pusher = new Pusher('e39e6791c472e636fb7f', {
+        cluster: 'ap1',
+        forceTLS: true
+    });
+
+    var channel = pusher.subscribe('VPOffice');
+    channel.bind('my-event', function (data) {
+        callTap();
+    });
+</script>
 <script>
     // SideNav Initialization
     $(".button-collapse").sideNav();

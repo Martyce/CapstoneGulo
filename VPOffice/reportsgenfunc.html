@@ -511,8 +511,23 @@
 <script type="text/javascript" src="../js/dataTables.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.16.0/moment.min.js"></script>
 <script src="https://app.dineandgift.com/plugins/daterangepicker/daterangepicker.js"></script>
-
 <script src="https://js.pusher.com/4.3/pusher.min.js"></script>
+<script src="../js/navmain.js"></script>
+<script>
+
+
+    var pusher = new Pusher('e39e6791c472e636fb7f', {
+        cluster: 'ap1',
+        forceTLS: true
+    });
+
+
+    var channel = pusher.subscribe('VPOffice');
+    channel.bind('my-event', function (data) {
+        loadAllDatas();
+        callTap();
+    });
+</script>
 <script>
     // SideNav Initialization
     $(".button-collapse").sideNav();
@@ -535,12 +550,6 @@
         $('#mdrop').addClass('show');
     }
 
-    var channel = pusher.subscribe('VPOffice');
-    channel.bind('my-event', function (data) {
-        console.log(data);
-        loadAllDatas();
-        callNotif();
-    });
     checkLogin();
     let ctrlNo = "";
     let user = "";

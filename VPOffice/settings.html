@@ -391,9 +391,26 @@
 <script type="text/javascript" src="../js/rud.js"></script>
 <script type="text/javascript" src="../js/updateAcc.js"></script>
 <script type="text/javascript" src="../js/sweetalert.min.js"></script>
+
+<script src="https://js.pusher.com/4.3/pusher.min.js"></script>
+<script src="../js/navmain.js"></script>
+<script>
+
+
+	var pusher = new Pusher('e39e6791c472e636fb7f', {
+		cluster: 'ap1',
+		forceTLS: true
+	});
+
+
+	var channel = pusher.subscribe('VPOffice');
+	channel.bind('my-event', function (data) {
+		callTap();
+	});
+</script>
 <script>
 	getUpdateset();
-	
+
 	// SideNav Initialization
 	$(".button-collapse").sideNav();
 	checkLogin();

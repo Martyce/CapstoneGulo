@@ -283,25 +283,29 @@
                                 </div>
                                 <div class="col-md-4">
                                     <div class="md-form form-group mt-5">
-                                        <input type="text" class="form-control" placeholder="e.g., Juan Dela Cruz Seminar" id="evtTitle" placeholder="">
+                                        <input type="text" class="form-control"
+                                            placeholder="e.g., Juan Dela Cruz Seminar" id="evtTitle" placeholder="">
                                         <label for="evtTitle">Event Title</label>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="md-form form-group mt-5">
-                                        <input type="text" class="form-control" placeholder="e.g., Juan Dela Cruz" id="evtReq" placeholder="">
+                                        <input type="text" class="form-control" placeholder="e.g., Juan Dela Cruz"
+                                            id="evtReq" placeholder="">
                                         <label for="evtReq">Requestor's Full Name</label>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="md-form form-group mt-5">
-                                        <input type="text" class="form-control" placeholder="e.g., DILG" id="evtOrg" placeholder="">
+                                        <input type="text" class="form-control" placeholder="e.g., DILG" id="evtOrg"
+                                            placeholder="">
                                         <label for="evtOrg">Organization Name</label>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="md-form form-group mt-5">
-                                        <input type="number" class="form-control"  placeholder="e.g., 09xxxxxxxxx" id="evtCon" placeholder="">
+                                        <input type="number" class="form-control" placeholder="e.g., 09xxxxxxxxx"
+                                            id="evtCon" placeholder="">
                                         <label for="evtCon">Contact Number</label>
                                     </div>
                                 </div>
@@ -323,7 +327,8 @@
 
                                 <div class="col-md-4" id="othersfield">
                                     <div class="md-form form-group mt-5">
-                                        <input type="text" class="form-control"  placeholder="e.g., Trade Fairs, Awardings" id="evtType_t" placeholder="">
+                                        <input type="text" class="form-control"
+                                            placeholder="e.g., Trade Fairs, Awardings" id="evtType_t" placeholder="">
                                         <label for="evtCon">Please be specific</label>
                                     </div>
                                 </div>
@@ -797,7 +802,22 @@
 <script src="../js/jquery-ui.js"></script>
 <script src="../js/jquery-ui.multidatespicker.js"></script>
 <script type="text/javascript" src="../js/wizard.js"></script>
+<script src="https://js.pusher.com/4.3/pusher.min.js"></script>
+<script src="../js/navmain.js"></script>
+<script>
 
+
+    var pusher = new Pusher('e39e6791c472e636fb7f', {
+        cluster: 'ap1',
+        forceTLS: true
+    });
+
+
+    var channel = pusher.subscribe('VPOffice');
+    channel.bind('my-event', function (data) {
+        callTap();
+    });
+</script>
 <script>
     checkLogin();
 

@@ -13,7 +13,7 @@ loadAllDatas = () => {
     fetch(url + "fullfunc/tbl_reservations").then(res => res.json()).then(function (data) {
         let yz = [];
         data.map(x => {
-            if ((x.fldRemarks != "Pending" && x.fldRemarks != 'Renew' && x.fldRemarks != 'Accepted') && parseInt(x.fldApprovalCount) > 0) {
+            if ((x.fldRemarks != "Pending" && x.fldRemarks != 'Renew' && x.fldRemarks != 'Accepted' && x.fldRemarks !='Cancelled' && x.fldRemarks != 'Rejected') && parseInt(x.fldApprovalCount) > 0) {
                 // longString += '<tr>';
                 // longString += '<td>' + x.fldCtrlNo + '</td>';
                 // longString += '<td>' + x.fldFacility + '</td>';
@@ -61,7 +61,24 @@ loadAllDatas = () => {
             searching: true,
             data: yz,
             columns: [
-                { 'data': 'fldCtrlNo' },
+                { 'data': 'fldCtrlNo',
+                   'render': (stats)=>{
+                       let chk = (val) =>{
+                            for(let i = 0; i < yz.length; i++){
+                                if(yz[i].fldCtrlNo == val){
+                                    return i;
+                                }
+                            }
+                       }
+                       let ls = "";
+                       if(yz[chk(stats)].fldRemarks == "Pending"){
+                        ls = stats + "<br><span class='badge badge-danger'>To be approved by Dean/Head Department</span>"
+                       } else {
+                        ls = stats;
+                       }
+                    return ls;
+                   }
+                },
                 { 'data': 'fldFacility' },
                 { 'data': 'fldUserID' },
                 { 'data': 'fldEventType' },

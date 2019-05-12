@@ -85,7 +85,8 @@
                                 <ul class="list-unstyled">
                                     <li>
                                         <a class="collapsible-header waves-effect arrow-r" href="reservations.html">
-                                            <i class="fa fa-list"></i>Function Reservations List</a>
+                                            <i class="fa fa-list"></i><span id="frl" class="badge badge-danger"></span>
+                                            Function Reservations List</a>
                                     </li>
                                     <li>
                                         <a class="collapsible-header waves-effect arrow-r" href="roomreservations.html">
@@ -197,7 +198,8 @@
                                     <div class="text-center">
                                         <div class="row">
                                             <div class="col-lg-12" id="billbtn">
-                                                <a class="btn btn-rounded btn-sm btn-primary" onclick="viewBill()" ripple-radius><i class="fa fa-file"></i> &nbsp; Attached Billing</a>
+                                                <a class="btn btn-rounded btn-sm btn-primary" onclick="viewBill()"
+                                                    ripple-radius><i class="fa fa-file"></i> &nbsp; Attached Billing</a>
                                             </div>
                                             <div class="col-lg-6">
                                                 <p class="text-left font-weight-bold">Event Name:
@@ -521,6 +523,20 @@
 
 <script type="text/javascript" src="../js/reservation.js"></script>
 <script src="https://js.pusher.com/4.3/pusher.min.js"></script>
+<script src="../js/navmain.js"></script>
+<script>
+
+
+    var pusher = new Pusher('e39e6791c472e636fb7f', {
+        cluster: 'ap1',
+        forceTLS: true
+    });
+
+    var channel = pusher.subscribe('VPOffice');
+    channel.bind('my-event', function (data) {
+        callTap();
+    });
+</script>
 <script>
     // SideNav Initialization
     $(".button-collapse").sideNav();
@@ -532,26 +548,6 @@
         minScrollbarLength: 20
     });
     loadAllDatas();
-
-    var pusher = new Pusher('e39e6791c472e636fb7f', {
-        cluster: 'ap1',
-        forceTLS: true
-    });
-
-    callNotif = () => {
-        $('#tdrop').addClass('show');
-        $('.dropdown-toggle').addClass('open');
-        $('#mdrop').addClass('show');
-    }
-
-    var channel = pusher.subscribe('VPOffice');
-    channel.bind('my-event', function (data) {
-        console.log(data);
-        loadAllDatas();
-        callNotif();
-    });
-
-
 
 
 </script>

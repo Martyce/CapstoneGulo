@@ -514,7 +514,7 @@
 
 					<div class="md-form mb-5">
 						<select class="browser-default custom-select" id="empdept">
-							<option value="" disabled selected>Selec Department</option>
+							<option value="" disabled selected>Select Department</option>
 							<option value="AcademicAffairs">Academic Affairs</option>
 							<option value="Clinic">College Clinic</option>
 							<option value="Registrar">College Regsitrar</option>
@@ -634,6 +634,22 @@
 <script type="text/javascript" src="../js/rud.js"></script>
 <script type="text/javascript" src="../js/user.js"></script>
 <script type="text/javascript" src="../js/sweetalert.min.js"></script>
+<script src="https://js.pusher.com/4.3/pusher.min.js"></script>
+<script src="../js/navmain.js"></script>
+<script>
+
+
+	var pusher = new Pusher('e39e6791c472e636fb7f', {
+		cluster: 'ap1',
+		forceTLS: true
+	});
+
+
+	var channel = pusher.subscribe('VPOffice');
+	channel.bind('my-event', function (data) {
+		callTap();
+	});
+</script>
 <script>
 	// SideNav Initialization
 	getStudent();
