@@ -91,7 +91,6 @@ addEmployee = () => {
     }
 }
 
-
 getStudent = () => {
     o.read("tbl_gcuser/fldAccType/Student").then(x => {
         let ls = "";
@@ -106,11 +105,24 @@ getStudent = () => {
             ls += '<td id="rseId' + y.fldseId + '">' + y.fldRemarks + '</td>';
             if (y.fldRemarks == "Pending") {
                 ls += '<td id="seId' + y.fldseId + '"><button class="btn btn-success" onClick="updateStudent(\'Active\' , ' + y.fldseId + ')"><i class="fa fa-check"></i></button><button onClick="updateStudent(\'Inactive\' , ' + y.fldseId + ')" class="btn btn-danger"><i class="fa fa-times"></i></button></td>';
+            } else {
+                ls += '<td><button onClick="editStudent('+ y.fldseId +')" class="btn btn-warning btn-rounded btn-sm" data-toggle="modal" data-target="#modalEditN"><i class="fa fa-pencil"></i></button></td>';
             }
             ls += '<tr>';
         });
 
         ox('stdtable').innerHTML = ls;
+    })
+}
+
+editStudent = (val) => {
+
+    o.read("tbl_gcuser/fldseId/"+val).then(x=>{
+        $("#sestdno").val(x[0].fldseId);
+        $("#sestdfname").val(x[0].fldFullname);
+        $("#sestduname").val(x[0].fldUsername);
+	    $("#sempdept").val(x[0].fldDepartment).change();
+	    $("#semrem").val(x[0].fldRemarks).change();
     })
 }
 
@@ -178,6 +190,8 @@ getEmployee = () => {
                 ls += '<td>' + y.fldContactNo + '</td>';
                 ls += '<td>' + y.fldAccType + '</td>';
                 ls += '<td>' + y.fldRemarks + '</td>';
+                ls += '<td><button class="btn btn-warning"><i class="fa fa-pencil"></i></button></td>';
+
                 ls += '<tr>';
             }
         });

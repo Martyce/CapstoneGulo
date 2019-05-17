@@ -29,7 +29,7 @@ $(document).ready(function () { // everything comes under document.ready
             dtLen = z.length;
             let ls = '';
             for (let i = 0; i < z.length; i++) {
-                ls += '<br><div> <h5>' + z[i] + '</h5> </div> <div class="input-form"> <label>From:</label> <input type="time" id="ftime' + i + '" min="08:00:00" max="20:00:00" required> </div> <div class="input-form"> <label>To:</label> <input type="time" id="ttime' + i + '" min="08:00:00" max="20:00:00" required> </div>';
+                ls += '<br><div> <h5>' + z[i] + '</h5> </div> <div class="input-form"> <label>Start Time:</label> <input type="time" id="ftime' + i + '" min="08:00:00" max="20:00:00" required> </div> <div class="input-form"> <label>End Time:</label> <input type="time" id="ttime' + i + '" min="08:00:00" max="20:00:00" required> </div>';
             }
 
             $('#items').html(ls);

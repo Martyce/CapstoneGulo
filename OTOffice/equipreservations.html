@@ -68,11 +68,11 @@
                                 <i class="fa fa-list"></i>Reservations List</a>
                         </li>
                         <li id="roomres">
-                            <a class="collapsible-header waves-effect arrow-r active" href="roomreservations.html">
+                            <a class="collapsible-header waves-effect arrow-r" href="roomreservations.html">
                                 <i class="fa fa-building-o"></i>Room Reservations List</a>
                         </li>
                         <li>
-                            <a class="collapsible-header waves-effect arrow-r" href="equipreservations.html">
+                            <a class="collapsible-header waves-effect arrow-r active" href="equipreservations.html">
                                 <i class="fa fa-wrench"></i>Equipment Reservations List</a>
                         </li>
                     </ul>
@@ -170,34 +170,22 @@
                                     <div class="text-center">
                                         <div class="row">
                                             <div class="col-lg-6">
-                                                <p class="text-left font-weight-bold">Event Name:
+                                                <p class="text-left font-weight-bold">Venue:
                                                     <span class="font-weight-light" id="evName">Juan Dela Cruz</span>
                                                 </p>
-                                                <p class="text-left font-weight-bold">Event Type:
+                                                <p class="text-left font-weight-bold">Department:
                                                     <span class="font-weight-light" id="evType">Barretto, Olongapo
                                                         City</span>
                                                 </p>
-                                                <p class="text-left font-weight-bold">Event Description:
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <p class="text-left font-weight-bold">Borrow Date:
                                                     <span class="font-weight-light" id="evDesc">We are going to the
                                                         conduct a short training for Juan Dela Cruz to help
                                                         them to improve their skills</span>
                                                 </p>
-                                                <p class="text-left font-weight-bold">Reservation Venue:
+                                                <p class="text-left font-weight-bold">Expected Date of Return:
                                                     <span class="font-weight-light" id="evFac">McDogosos</span>
-                                                </p>
-                                            </div>
-                                            <div class="col-lg-6">
-                                                <p class="text-left font-weight-bold">Attendees From Outside:
-                                                    <span class="font-weight-light" id="OutGC">100</span>
-                                                </p>
-                                                <p class="text-left font-weight-bold">Attendees From Gordon College:
-                                                    <span class="font-weight-light" id="InGC">50</span>
-                                                </p>
-                                                <p class="text-left font-weight-bold">With Food Catering:
-                                                    <span class="font-weight-light" id="fdCater">Yes</span>
-                                                </p>
-                                                <p class="text-left font-weight-bold">Number of Ushers:
-                                                    <span class="font-weight-light" id="ushers">0</span>
                                                 </p>
                                             </div>
                                             <div class="col-lg-12">
@@ -222,7 +210,7 @@
                                             <div class="col-lg-12">
                                                 <hr>
                                             </div>
-                                            <div class="col-lg-6">
+                                            <!-- <div class="col-lg-6">
                                                 <p class="text-left font-weight-bold">Event Time and Date:</p>
                                                 <div id="evtDts">
                                                     <p class="text-left font-weight-light" id="fldTime">07:00AM - 4:00PM
@@ -230,16 +218,7 @@
                                                     <p class="text-left font-weight-light" id="fldTime">07:00AM - 4:00PM
                                                         @ 11/18/2018</p>
                                                 </div>
-                                            </div>
-                                            <div class="col-lg-6">
-                                                <p class="text-left font-weight-bold">Event Speakers/Guests:</p>
-                                                <div id="rvip">
-                                                    <p class="text-left font-weight-light" id="fldTime">Macion Mart
-                                                        Rudolph</p>
-                                                    <p class="text-left font-weight-light" id="fldTime">Macion Mart
-                                                        Rudolph</p>
-                                                </div>
-                                            </div>
+                                            </div> -->
                                         </div>
                                         <br>
                                         <h5 class="font-weight-bold mb-0 mt-4">Materials Needed</h5>
@@ -249,6 +228,7 @@
                                                     <tr>
                                                         <th scope="col">Item Name</th>
                                                         <th scope="col">Quantity</th>
+                                                        <th scope="col">Item Remarks</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody id="pending_tbldata">
@@ -559,7 +539,7 @@
 <script type="text/javascript" src="../js/url.js"></script>
 <script type="text/javascript" src="../js/rud.js"></script>
 <script type="text/javascript" src="../js/dataTables.js"></script>
-<script type="text/javascript" src="../js/oroomreservation.js"></script>
+<script type="text/javascript" src="../js/oeqreservation.js"></script>
 <script type="text/javascript" src="../js/nav.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.16.0/moment.min.js"></script>
 <script src="https://app.dineandgift.com/plugins/daterangepicker/daterangepicker.js"></script>

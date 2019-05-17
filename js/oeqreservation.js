@@ -89,14 +89,11 @@ pullData = async (val) => {
             user = x.fldUserID;
             $('#tNo').html(x.fldEqID);
             console.log(x.fldRemarks);
-            if (x.fldRemarks == "Processing") {
+            if (x.fldRemarks == "Pending") {
                 $("#xRm").css("display", "block");
                 $("#yRm").css("display", "none");
             } else {
-                if (x.fldRemarks == "Rejected" || x.fldRemarks == 'Accepted' || x.flRemarks == 'Cancelled') {
-
-                    $('#custlist').css('display', "none");
-                    $('#custlist_t').css('display', "none");
+                if (x.fldRemarks == "Rejected") {
                     $("#xRm").css("display", "none");
                     $("#yRm").css("display", "none");
                 } else {
@@ -108,17 +105,6 @@ pullData = async (val) => {
         });
     });
 
-
-    fetch(url + "tbl_gcuser").then(res => res.json()).then(x => {
-        let ls = "";
-        x.map((data, i) => {
-            if (data.fldAccType != "Student") {
-                ls += ' <div class="col-lg-4"> <div class="list-group"> <a href="#!" class="list-group-item list-group-item-action flex-column align-items-start"> <div class="d-flex w-100 justify-content-between"> <div class="custom-control custom-checkbox"> <input type="checkbox" class="custom-control-input" id="xid'+i+'"> <label class="custom-control-label" for="xid'+i+'">'+ data.fldFullname +'<br>('+ data.fldDepartment +')</label> </div> </div> </a> </div> </div>'
-            }
-        })
-
-        $('#custlist').html(ls);
-    })
 
     fetch(url + "tbl_gcuser/fldseId/" + user).then(res => res.json()).then(function (xdata) {
 
@@ -142,11 +128,11 @@ pullData = async (val) => {
         let ls = "";
         data.map(x => {
 
-            ls += '<tr>';
-            ls += '<td>' + x.fldItemName + '</td>';
-            ls += '<td>' + x.fldItemQty + '</td>';
-            ls += '<td>' + x.fldItemRemarks + '</td>';
-            ls += '</tr>';
+            ls+= '<tr>';
+            ls+= '<td>'+ x.fldItemName +'</td>';
+            ls+= '<td>'+ x.fldItemQty +'</td>';
+            ls+= '<td>'+  x.fldItemRemarks +'</td>';
+            ls+= '</tr>';
             //ls += '<p class="text-left font-weight-light" id="fldTime">' + x.fldItemName + ' - ' + x.fldItemQty + ' Status: ' + x.fldItemRemarks + '</p>'
         });
 
@@ -172,7 +158,7 @@ let sAlert = () => {
         showConfirmButton: false
     },
         function () {
-            window.location.assign('roomreservations.html');
+            window.location.assign('equipreservations.html');
         }
     );
 }
@@ -193,24 +179,24 @@ getDate = () => {
 let submitData = (val) => {
     let data = {};
     let x = {};
-    if (val == "Processing") {
-        val = "Accepted";
+    if (val == "Pending") {
+        val = "Processing";
         data = {
             aCrl: ctrlNo,
             b: uLog.UserID,
             c: uLog.fldDept,
             d: getDate(),
             e: val,
-            f: 2,
-            g: 1,
-            h: 2,
-            i: 2,
-            j: 2,
+            f: 1,
+            g: 2,
+            h: 1,
+            i: 1,
+            j: 1,
             k: 2
         };
         x = {
             fldRemarks: val,
-            fldApprovalCount: "2"
+            fldApprovalCount: "1"
         };
     } else if (val == "Cancel") {
         data = {
@@ -263,6 +249,7 @@ let sback = () => {
     $("#bdown").css("display", "none");
     $("#adown").css("display", "block");
 }
+
 
 
 

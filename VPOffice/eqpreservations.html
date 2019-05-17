@@ -178,11 +178,13 @@
     <!--Main layout-->
     <main>
         <div class="container-fluid" id="bdown" style="display: none;">
-
             <div class="col-lg-12">
                 <div class="container">
                     <div class="row">
                         <!--Content-->
+                        <!-- <div class="col-lg-12">
+                                <button onclick="sback()" class="btn btn-primary">Back</button>
+                            </div> -->
                         <div class="col-lg-12">
                             <div class="card card-cascade narrower">
                                 <!--Header-->
@@ -196,20 +198,22 @@
                                     <div class="text-center">
                                         <div class="row">
                                             <div class="col-lg-6">
-                                                <p class="text-left font-weight-bold">Department:
+                                                <p class="text-left font-weight-bold">Venue:
                                                     <span class="font-weight-light" id="evName">Juan Dela Cruz</span>
                                                 </p>
-                                                <p class="text-left font-weight-bold">Venue:
+                                                <p class="text-left font-weight-bold">Department:
                                                     <span class="font-weight-light" id="evType">Barretto, Olongapo
                                                         City</span>
                                                 </p>
                                             </div>
                                             <div class="col-lg-6">
-                                                <p class="text-left font-weight-bold">Date From:
-                                                    <span class="font-weight-light" id="evDesc"></span>
+                                                <p class="text-left font-weight-bold">Borrow Date:
+                                                    <span class="font-weight-light" id="evDesc">We are going to the
+                                                        conduct a short training for Juan Dela Cruz to help
+                                                        them to improve their skills</span>
                                                 </p>
-                                                <p class="text-left font-weight-bold">Date of Return:
-                                                    <span class="font-weight-light" id="evFac"></span>
+                                                <p class="text-left font-weight-bold">Expected Date of Return:
+                                                    <span class="font-weight-light" id="evFac">McDogosos</span>
                                                 </p>
                                             </div>
                                             <div class="col-lg-12">
@@ -217,78 +221,71 @@
                                             </div>
                                             <div class="col-lg-6">
                                                 <p class="text-left font-weight-bold">Requestor's Full Name:
-                                                    <span class="font-weight-light" id="sxfname">Juan Dela Cruz</span>
+                                                    <span class="font-weight-light" id="sxfname"></span>
                                                 </p>
                                                 <p class="text-left font-weight-bold">Requestor's Department:
-                                                    <span class="font-weight-light" id="dept">CCS</span>
+                                                    <span class="font-weight-light" id="dept"></span>
                                                 </p>
                                             </div>
                                             <div class="col-lg-6">
-                                                <p class="text-left font-weight-bold">Email Address:
-                                                    <span class="font-weight-light" id="email">sonic902@gmail.com</span>
+                                                <p class="text-left font-weight-bold">Email/Username:
+                                                    <span class="font-weight-light" id="email"></span>
                                                 </p>
                                                 <p class="text-left font-weight-bold">Contact Number:
-                                                    <span class="font-weight-light" id="cno">0879878907</span>
+                                                    <span class="font-weight-light" id="cno"></span>
                                                 </p>
                                             </div>
-
+                                            <div class="col-lg-12">
+                                                <hr>
+                                            </div>
+                                            <!-- <div class="col-lg-6">
+                                                    <p class="text-left font-weight-bold">Event Time and Date:</p>
+                                                    <div id="evtDts">
+                                                        <p class="text-left font-weight-light" id="fldTime">07:00AM - 4:00PM
+                                                            @ 11/18/2018</p>
+                                                        <p class="text-left font-weight-light" id="fldTime">07:00AM - 4:00PM
+                                                            @ 11/18/2018</p>
+                                                    </div>
+                                                </div> -->
                                         </div>
+                                        <br>
+                                        <h5 class="font-weight-bold mb-0 mt-4">Materials Needed</h5>
+                                        <div class="table-responsive">
+                                            <table class="table">
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col">Item Name</th>
+                                                        <th scope="col">Quantity</th>
+                                                        <th scope="col">Item Remarks</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="pending_tbldata">
 
+                                                </tbody>
+                                            </table>
+                                        </div>
                                         <hr>
-                                        <div class="col-lg-6">
-                                            <p class="text-left font-weight-bold">Event Time and Date:</p>
-                                            <div id="evtDts">
-                                                <p class="text-left font-weight-light" id="fldTime">07:00AM - 4:00PM
-                                                    @ 11/18/2018</p>
-                                                <p class="text-left font-weight-light" id="fldTime">07:00AM - 4:00PM
-                                                    @ 11/18/2018</p>
+
+                                        <div class="row" id="custlist_t">
+                                            <div class="col-lg-12 text-center">
+                                                Custodian List
                                             </div>
                                         </div>
+
+                                        <div class="row" id="custlist">
+
+
+
+                                            <!-- <div class="col-lg-12 text-center" id="xRm">
+                                                    <br>
+                                                    <br>
+                                                    <a class="btn btn-success btn-rounded" ripple-radius onclick="submitData('Accepted')">ACCEPT</a>
+                                                    <a class="btn btn-danger btn-rounded" data-toggle="modal" data-target="#DeclinedModal" ripple-radius>Decline</a>
+                                                </div>                                             -->
+                                        </div>
+
                                         <div class="row">
-                                            <div class="col-lg-3">
-                                                <div class="list-group">
-                                                    <a href="#!" id="status1"
-                                                        class="list-group-item list-group-item-action flex-column align-items-start">
-                                                        <div class="d-flex w-100 justify-content-between">
-                                                            <h5 class="mb-2 h5">Supply Office</h5>
-                                                            <small id="po">Not yet seen</small>
-                                                        </div>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-3">
-                                                <div class="list-group">
-                                                    <a href="#!" id="status2"
-                                                        class="list-group-item list-group-item-action flex-column align-items-start">
-                                                        <div class="d-flex w-100 justify-content-between">
-                                                            <h5 class="mb-2 h5">MIS Office</h5>
-                                                            <small id="ms">Not yet seen</small>
-                                                        </div>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-3">
-                                                <div class="list-group">
-                                                    <a href="#!" id="status3"
-                                                        class="list-group-item list-group-item-action flex-column align-items-start">
-                                                        <div class="d-flex w-100 justify-content-between">
-                                                            <h5 class="mb-2 h5">Maintenance Office</h5>
-                                                            <small id="mo">Not yet seen</small>
-                                                        </div>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-3">
-                                                <div class="list-group">
-                                                    <a href="#!" id="status4"
-                                                        class="list-group-item list-group-item-action flex-column align-items-start">
-                                                        <div class="d-flex w-100 justify-content-between">
-                                                            <h5 class="mb-2 h5">Security Office</h5>
-                                                            <small id="so">Not yet seen</small>
-                                                        </div>
-                                                    </a>
-                                                </div>
-                                            </div>
+
                                             <hr>
                                             <div class="col-lg-12 text-center" id="xRm">
                                                 <br>
@@ -297,14 +294,6 @@
                                                     onclick="submitData('Processing')">ACCEPT</a>
                                                 <a class="btn btn-danger btn-rounded" data-toggle="modal"
                                                     data-target="#DeclinedModal" ripple-radius>Decline</a>
-                                            </div>
-
-                                            <div class="col-lg-12 text-center" id="yRm">
-                                                <br>
-                                                <br>
-                                                <a class="btn btn-danger btn-rounded" data-toggle="modal"
-                                                    data-target="#CancelModal" ripple-radius
-                                                    onclick="submitData('Cancelled')">Cancel</a>
                                             </div>
                                         </div>
                                     </div>
@@ -320,18 +309,125 @@
         </div>
         <div class="container-fluid" id="adown">
 
+
             <!-- Action Modal Button -->
             <section class="float-left">
                 <div class="row d-flex justify-content-center modalWrapper">
+                    <div class="modal fade addNewInputs" id="modalAdd" tabindex="-1" role="dialog"
+                        aria-labelledby="modalAdd" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header text-center">
+                                    <h4 class="modal-title w-100 font-weight-bold text-primary ml-5">Add new form</h4>
+                                    <button type="button" class="close text-primary" data-dismiss="modal"
+                                        aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body mx-3">
+                                    <div class="md-form mb-5">
+                                        <input type="text" id="inputName" class="form-control validate">
+                                        <label data-error="wrong" data-success="right" for="inputName">Name</label>
+                                    </div>
 
+                                    <div class="md-form mb-5">
+                                        <input type="text" id="inputPosition" class="form-control validate">
+                                        <label data-error="wrong" data-success="right"
+                                            for="inputPosition">Position</label>
+                                    </div>
 
-                    <div class="text-center">
-                        <a href="" class="btn btn-info btn-rounded btn-sm" data-toggle="modal"
-                            data-target="#modalAdd">Add
-                            <i class="fa fa-plus-square ml-1"></i>
-                        </a>
+                                    <div class="md-form mb-5">
+                                        <input type="text" id="inputOfficeInput" class="form-control validate">
+                                        <label data-error="wrong" data-success="right"
+                                            for="inputOfficeInput">Office</label>
+                                    </div>
+
+                                    <div class="md-form mb-5">
+                                        <input type="text" id="inputAge" class="form-control validate">
+                                        <label data-error="wrong" data-success="right" for="inputAge">Age</label>
+                                    </div>
+
+                                    <div class="md-form mb-5">
+                                        <input type="date" id="inputDate" class="form-control"
+                                            placeholder="Select Date">
+                                        <label data-error="wrong" data-success="right" for="inputDate"></label>
+                                    </div>
+
+                                    <div class="md-form mb-5">
+                                        <input type="text" id="inputSalary" class="form-control validate">
+                                        <label data-error="wrong" data-success="right" for="inputSalary">Salary</label>
+                                    </div>
+
+                                </div>
+                                <div class="modal-footer d-flex justify-content-center buttonAddFormWrapper">
+                                    <button class="btn btn-outline-primary btn-block buttonAdd" data-dismiss="modal">Add
+                                        form
+                                        <i class="fa fa-paper-plane-o ml-1"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
+                    <div class="text-center">
+                    </div>
+
+                    <div class="modal fade modalEditClass" id="modalEdit" tabindex="-1" role="dialog"
+                        aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header text-center">
+                                    <h4 class="modal-title w-100 font-weight-bold text-secondary ml-5">Edit form</h4>
+                                    <button type="button" class="close text-secondary" data-dismiss="modal"
+                                        aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body mx-3">
+                                    <div class="md-form mb-5">
+                                        <input type="text" id="formNameEdit" class="form-control validate">
+                                        <label data-error="wrong" data-success="right" for="formNameEdit">Name</label>
+                                    </div>
+
+                                    <div class="md-form mb-5">
+                                        <input type="text" id="formPositionEdit" class="form-control validate">
+                                        <label data-error="wrong" data-success="right"
+                                            for="formPositionEdit">Position</label>
+                                    </div>
+
+                                    <div class="md-form mb-5">
+                                        <input type="text" id="formOfficeEdit" class="form-control validate">
+                                        <label data-error="wrong" data-success="right"
+                                            for="formOfficeEdit">Office</label>
+                                    </div>
+
+                                    <div class="md-form mb-5">
+                                        <input type="text" id="formAgeEdit" class="form-control validate">
+                                        <label data-error="wrong" data-success="right" for="formAgeEdit">Age</label>
+                                    </div>
+
+                                    <div class="md-form mb-5">
+                                        <input type="text" id="formDateEdit" class="form-control datepicker">
+                                        <label data-error="wrong" data-success="right" for="formDateEdit">Date</label>
+                                    </div>
+
+                                    <div class="md-form mb-5">
+                                        <input type="text" id="formSalaryEdit" class="form-control validate">
+                                        <label data-error="wrong" data-success="right"
+                                            for="formSalaryEdit">Salary</label>
+                                    </div>
+
+
+                                </div>
+                                <div class="modal-footer d-flex justify-content-center editInsideWrapper">
+                                    <button class="btn btn-outline-secondary btn-block editInside"
+                                        data-dismiss="modal">Edit form
+                                        <i class="fa fa-paper-plane-o ml-1"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
                     <div class="text-center buttonEditWrapper">
                         <a class="btn btn-info btn-rounded btn-sm buttonEdit" href="printreport.html">Print
@@ -348,8 +444,8 @@
 
 
 
-            <section class="section">
 
+            <section class="section">
 
 
                 <div class="table-responsive text-nowrap">
@@ -360,10 +456,10 @@
                         <thead class="xcolor">
                             <tr>
                                 <th>Control Number</th>
-                                <th>Department Name</th>
+                                <th>Facility Name</th>
                                 <th>User ID</th>
-                                <th>Request Venue</th>
-                                <th>Date</th>
+                                <th>Event Type</th>
+                                <th>Date Request</th>
                                 <th>Remarks</th>
                                 <th>Action</th>
                             </tr>
@@ -506,5 +602,6 @@
 
 
 </script>
+
 
 </html>
