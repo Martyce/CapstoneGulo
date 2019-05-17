@@ -640,18 +640,15 @@
 				</div>
 				<div class="modal-body mx-3">
 					<div class="md-form mb-5">
-						<input type="text" id="sestdno" class="form-control validate">
-						<label data-error="wrong" data-success="right" for="sestdno">Student Number</label>
+						<input type="text" id="sestdno" class="form-control validate" placeholer="Student Number">
 					</div>
 
 					<div class="md-form mb-5">
-						<input type="text" id="sestdfname" class="form-control validate">
-						<label data-error="wrong" data-success="right" for="sestdfname">Full Name</label>
+						<input type="text" id="sestdfname" class="form-control validate" placeholer="Full Name">
 					</div>
 
 					<div class="md-form mb-5">
-						<input type="text" id="sestduname" class="form-control validate">
-						<label data-error="wrong" data-success="right" for="sestduname">Username</label>
+						<input type="text" id="sestduname" class="form-control validate" placeholer="Username">
 					</div>
 
 
@@ -707,14 +704,14 @@
 
 					<div class="md-form mb-5">
 
-						<button class="btn btn-warning btn-block buttonAdd">Reset User Password
+						<button class="btn btn-warning btn-block buttonAdd" onclick="resetPwEditStudent()">Reset User Password
 							<i class="fa fa-lock ml-1"></i>
 						</button>
 					</div>
 
 				</div>
 				<div class="modal-footer d-flex justify-content-center buttonAddFormWrapper">
-					<button class="btn btn-outline-primary btn-block buttonAdd" onclick="addStudent()">Update Student
+					<button class="btn btn-outline-primary btn-block buttonAdd" onclick="updateEditStudent()">Update Student
 						<i class="fa fa-paper-plane-o ml-1"></i>
 					</button>
 				</div>

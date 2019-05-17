@@ -727,6 +727,8 @@ let submitData = (val) => {
             console.log(res);
             o.rud("update/tbl_reservations/fldCtrlNo/" + ctrlNo, [x]).then(y => {
                 sAlert();
+
+                fetch("http://")
             })
         });
     }

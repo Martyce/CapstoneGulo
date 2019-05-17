@@ -106,7 +106,7 @@ getStudent = () => {
             if (y.fldRemarks == "Pending") {
                 ls += '<td id="seId' + y.fldseId + '"><button class="btn btn-success" onClick="updateStudent(\'Active\' , ' + y.fldseId + ')"><i class="fa fa-check"></i></button><button onClick="updateStudent(\'Inactive\' , ' + y.fldseId + ')" class="btn btn-danger"><i class="fa fa-times"></i></button></td>';
             } else {
-                ls += '<td><button onClick="editStudent('+ y.fldseId +')" class="btn btn-warning btn-rounded btn-sm" data-toggle="modal" data-target="#modalEditN"><i class="fa fa-pencil"></i></button></td>';
+                ls += '<td><button onClick="editStudent(' + y.fldseId + ')" class="btn btn-warning btn-rounded btn-sm" data-toggle="modal" data-target="#modalEditN"><i class="fa fa-pencil"></i></button></td>';
             }
             ls += '<tr>';
         });
@@ -115,14 +115,44 @@ getStudent = () => {
     })
 }
 
-editStudent = (val) => {
 
-    o.read("tbl_gcuser/fldseId/"+val).then(x=>{
+let tbup = 0;
+editStudent = (val) => {
+    tbup = val;
+    o.read("tbl_gcuser/fldseId/" + val).then(x => {
         $("#sestdno").val(x[0].fldseId);
         $("#sestdfname").val(x[0].fldFullname);
         $("#sestduname").val(x[0].fldUsername);
-	    $("#sempdept").val(x[0].fldDepartment).change();
-	    $("#semrem").val(x[0].fldRemarks).change();
+        $("#sempdept").val(x[0].fldDepartment).change();
+        $("#semrem").val(x[0].fldRemarks).change();
+    })
+}
+
+
+updateEditStudent = () => {
+    let dt = {
+        fldseId: $("#sestdno").val(),
+        fldFullname: $("#sestdfname").val(),
+        fldUsername: $("#sestduname").val(),
+        fldDepartment: $("#sempdept").val(),
+        fldRemarks: $("#semrem").val()
+    }
+    o.rud("update/tbl_gcuser/fldseId/" + tbup, [dt]).then(x => {
+        window.alert("Student details updated");
+
+        getStudent();
+        $('#modalEditN').modal('hide');
+    })
+}
+
+resetPwEditStudent = () => {
+    let pwd = {
+        fldPassword: "default123!"
+    }
+    o.rud("update/tbl_gcuser/fldseId/" + tbup, [pwd]).then(x => {
+        window.alert("Password restored to default");
+        getStudent();
+        $('#modalEditN').modal('hide');
     })
 }
 

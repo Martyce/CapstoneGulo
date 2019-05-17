@@ -523,9 +523,8 @@
 
 <script type="text/javascript" src="../js/reservation.js"></script>
 <script src="https://js.pusher.com/4.3/pusher.min.js"></script>
-<script src="../js/navmain.js"></script>
+<!-- <script src="../js/navmain.js"></script> -->
 <script>
-
 
     var pusher = new Pusher('e39e6791c472e636fb7f', {
         cluster: 'ap1',
@@ -534,8 +533,43 @@
 
     var channel = pusher.subscribe('VPOffice');
     channel.bind('my-event', function (data) {
-        callTap();
+        // callTap();
     });
+
+
+    let callTap = () => {
+        try {
+            o.read("tbl_reservations/fldRemarks/In progress").then(x => {
+                console.log(x);
+                let ls = "";
+
+
+                if (x.length > 0) {
+                    ls = x.length;
+                    if (localStorage.clicked != 1) {
+                        swal({
+                            title: "You have " + x.length + " pending approval",
+                            icon: "info",
+                            confirmButtonText: 'OK'
+                        })
+                        localStorage.clicked = 0;
+                    }
+                    
+                }
+
+
+
+                $('#frl').html(ls);
+
+
+            })
+        }
+        catch (e) {
+
+        }
+    }
+    callTap();
+
 </script>
 <script>
     // SideNav Initialization
