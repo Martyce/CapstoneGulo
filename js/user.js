@@ -128,7 +128,6 @@ editStudent = (val) => {
     })
 }
 
-
 updateEditStudent = () => {
     let dt = {
         fldseId: $("#sestdno").val(),
@@ -153,6 +152,45 @@ resetPwEditStudent = () => {
         window.alert("Password restored to default");
         getStudent();
         $('#modalEditN').modal('hide');
+    })
+}
+
+
+
+editEmp = (val) => {
+    tbup = val;
+    o.read("tbl_gcuser/fldseId/" + val).then(x => {
+        $("#uestdno").val(x[0].fldseId);
+        $("#uestdfname").val(x[0].fldFullname);
+        $("#uestduname").val(x[0].fldUsername);
+        $("#uempdept").val(x[0].fldDepartment).change();
+        $("#uemrem").val(x[0].fldRemarks).change();
+    })
+}
+
+updateEditEmp = () => {
+    let dt = {
+        fldseId: $("#uestdno").val(),
+        fldFullname: $("#uestdfname").val(),
+        fldUsername: $("#uestduname").val(),
+        fldDepartment: $("#uempdept").val(),
+        fldRemarks: $("#uemrem").val()
+    }
+    o.rud("update/tbl_gcuser/fldseId/" + tbup, [dt]).then(x => {
+        window.alert("Employee details updated");
+        getEmployee();
+        $('#modalEditU').modal('hide');
+    })
+}
+
+resetPwEditEmp = () => {
+    let pwd = {
+        fldPassword: "default123!"
+    }
+    o.rud("update/tbl_gcuser/fldseId/" + tbup, [pwd]).then(x => {
+        window.alert("Employee restored to default");
+        getEmployee();
+        $('#modalEditU').modal('hide');
     })
 }
 
@@ -220,7 +258,7 @@ getEmployee = () => {
                 ls += '<td>' + y.fldContactNo + '</td>';
                 ls += '<td>' + y.fldAccType + '</td>';
                 ls += '<td>' + y.fldRemarks + '</td>';
-                ls += '<td><button class="btn btn-warning"><i class="fa fa-pencil"></i></button></td>';
+                ls += '<td><button onclick="editEmp('+ y.fldseId +')" class="btn btn-warning btn-rounded btn-sm" data-toggle="modal" data-target="#modalEditU"><i class="fa fa-pencil"></i></button></td>';
 
                 ls += '<tr>';
             }

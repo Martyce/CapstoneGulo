@@ -13,7 +13,7 @@ loadAllDatas = () => {
     fetch(url + "fullfunc/tbl_reservations").then(res => res.json()).then(function (data) {
         let yz = [];
         data.map(x => {
-            if ((x.fldRemarks != "Pending" && x.fldRemarks != 'Renew' && x.fldRemarks != 'Accepted' && x.fldRemarks !='Cancelled' && x.fldRemarks != 'Rejected') && parseInt(x.fldApprovalCount) > 0) {
+            if ((x.fldRemarks != "Pending" && x.fldRemarks != 'Renew' && x.fldRemarks != 'Accepted' && x.fldRemarks != 'Cancelled' && x.fldRemarks != 'Rejected') && parseInt(x.fldApprovalCount) > 0) {
                 // longString += '<tr>';
                 // longString += '<td>' + x.fldCtrlNo + '</td>';
                 // longString += '<td>' + x.fldFacility + '</td>';
@@ -61,23 +61,24 @@ loadAllDatas = () => {
             searching: true,
             data: yz,
             columns: [
-                { 'data': 'fldCtrlNo',
-                   'render': (stats)=>{
-                       let chk = (val) =>{
-                            for(let i = 0; i < yz.length; i++){
-                                if(yz[i].fldCtrlNo == val){
+                {
+                    'data': 'fldCtrlNo',
+                    'render': (stats) => {
+                        let chk = (val) => {
+                            for (let i = 0; i < yz.length; i++) {
+                                if (yz[i].fldCtrlNo == val) {
                                     return i;
                                 }
                             }
-                       }
-                       let ls = "";
-                       if(yz[chk(stats)].fldRemarks == "Pending"){
-                        ls = stats + "<br><span class='badge badge-danger'>To be approved by Dean/Head Department</span>"
-                       } else {
-                        ls = stats;
-                       }
-                    return ls;
-                   }
+                        }
+                        let ls = "";
+                        if (yz[chk(stats)].fldRemarks == "Pending") {
+                            ls = stats + "<br><span class='badge badge-danger'>To be approved by Dean/Head Department</span>"
+                        } else {
+                            ls = stats;
+                        }
+                        return ls;
+                    }
                 },
                 { 'data': 'fldFacility' },
                 { 'data': 'fldUserID' },
@@ -190,7 +191,7 @@ pullData = async (val) => {
 
             fetch(url + "tbl_gcuser/fldseId/" + user).then(res => res.json()).then(function (xdata) {
 
-                if(xdata.length == 0){
+                if (xdata.length == 0) {
                     $('#sxfname').html(x.fldUserID);
                     $('#dept').html(x.fldDepartment);
                     $('#cno').html(x.fldContactNumber);
@@ -242,25 +243,71 @@ pullData = async (val) => {
         $('#pending_tbldata').html(ls);
     });
 
-    fetch(url + "tbl_billings/fldCtrlNo/"+ val).then(res => res.json()).then(x=>{
-        if(x.length > 0){
+    fetch(url + "tbl_billings/fldCtrlNo/" + val).then(res => res.json()).then(x => {
+        if (x.length > 0) {
             $('#billbtn').css("display", "block");
         } else {
             $('#billbtn').css("display", "none");
         }
     })
 }
+pullSeen = (val) => {
+    o.read("tbl_seen/fldseId/tbl_gcuser/fldseId/fldCtrlNo/" + val).then(x => {
+        console.log(x);
+        x.map(data => {
 
+            if (data.fldAccType == "Dean" || data.fldAccType == "Department Head") {
+                $('#status0').addClass("bg-primary text-white");
+                $('#do').html(data.fldDateTime + " <br> " + data.fldFullname)
+            }
+
+            if (data.fldDepartment == "MIS") {
+                $('#status2').addClass("bg-primary text-white");
+                $('#ms').html(data.fldDateTime + " <br> " + data.fldFullname)
+            }
+
+            if (data.fldDepartment == "Supply") {
+                $('#status1').addClass("bg-primary text-white");
+                $('#po').html(data.fldDateTime + " <br> " + data.fldFullname)
+            }
+
+            if (data.fldDepartment == "Maintenance") {
+                $('#status3').addClass("bg-primary text-white");
+                $('#mo').html(data.fldDateTime + " <br> " + data.fldFullname)
+            }
+
+            if (data.fldDepartment == "Security") {
+                $('#status4').addClass("bg-primary text-white");
+                $('#so').html(data.fldDateTime + " <br> " + data.fldFullname)
+            }
+        })
+    })
+}
+
+let sendSeen = (val) => {
+    let uid = JSON.parse(localStorage.userDet);
+    let dt = {
+        afldCtrlNo: val,
+        bfldseId: uid.UserID,
+        cDate: getDate()
+    }
+
+    o.rud("insert/tbl_seen", [dt]).then(x => {
+        console.log("Seen");
+    })
+}
 
 let sfunc = (x) => {
     $("#bdown").css("display", "flex");
     $("#adown").css("display", "none");
     ctrlNo = x;
+    // sendSeen(x);
+    pullSeen(x);
     pullData(x);
 }
 let sAlert = () => {
     swal({
-        title: "Transaction # is successfully accepted",
+        title: "Transaction # has been successfully accepted",
         text: "The transaction will now be forwarded to MIS, Supply, Security and Maintenance Office",
         type: "success",
         timer: 3000,
@@ -272,7 +319,7 @@ let sAlert = () => {
     );
 }
 
-let viewBill = () =>{
+let viewBill = () => {
     localStorage.bill = ctrlNo;
     window.open("billingreport.html", "_blank");
 }

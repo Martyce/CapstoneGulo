@@ -398,7 +398,7 @@ pullData = async (val) => {
                 user = x.fldUserID;
                 $('#tNo').html(x.fldCtrlNo);
 
-                pullUser(user); 
+                pullUser(user);
                 if (uLog.Authorize == "Dean" || uLog.Authorize == "Department Head") {
                     $("#bxRm").css("display", "none");
                     if (x.fldRemarks == "Pending") {
@@ -477,14 +477,33 @@ pullData = async (val) => {
 }
 
 
+let sendSeen = (val) => {
+    let uid = JSON.parse(localStorage.userDet);
+    let dt = {
+        afldCtrlNo: val,
+        bfldseId: uid.UserID,
+        cDate: getDate()
+    }
 
+    o.rud("insert/tbl_seen", [dt]).then(x => {
+        console.log("Seen");
+    })
+}
+
+
+pullSeen = (val) =>{
+    o.read("tbl_seen/fldseId/tbl_gcuser/fldseId/fldCtrlNo/"+val).then(x=>{
+        console.log(x);
+    })
+}
 
 let sfunc = (x) => {
     $("#bdown").css("display", "flex");
     $("#adown").css("display", "none");
     ctrlNo = x;
     pullData(x);
-
+    sendSeen(x);
+    pullSeen(x);
 }
 
 let sback = () => {
@@ -494,14 +513,14 @@ let sback = () => {
 
 let sAlert = () => {
     swal({
-        title: "Transaction # is successfully accepted",
-        text: "Please let wait until the various offices accept",
+        title: "Transaction # has been successfully accepted",
+        text: "Please wait until the various office accepts your request",
         type: "success",
         timer: 3000,
         showConfirmButton: false
     },
         function () {
-            o.read("http://www.gordoncollegeccs-ssite.net/macionmart/samplepush/push.php?channel=VPOffice").then(x=>{
+            o.read("http://www.gordoncollegeccs-ssite.net/macionmart/samplepush/push.php?channel=VPOffice").then(x => {
 
             });
             window.location.assign('reservations.html')

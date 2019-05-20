@@ -704,14 +704,109 @@
 
 					<div class="md-form mb-5">
 
-						<button class="btn btn-warning btn-block buttonAdd" onclick="resetPwEditStudent()">Reset User Password
+						<button class="btn btn-warning btn-block buttonAdd" onclick="resetPwEditStudent()">Reset User
+							Password
 							<i class="fa fa-lock ml-1"></i>
 						</button>
 					</div>
 
 				</div>
 				<div class="modal-footer d-flex justify-content-center buttonAddFormWrapper">
-					<button class="btn btn-outline-primary btn-block buttonAdd" onclick="updateEditStudent()">Update Student
+					<button class="btn btn-outline-primary btn-block buttonAdd" onclick="updateEditStudent()">Update
+						Student
+						<i class="fa fa-paper-plane-o ml-1"></i>
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="modal fade addNewInputs" id="modalEditU" tabindex="-1" role="dialog" aria-labelledby="modalAdd"
+		aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header text-center">
+					<h4 class="modal-title w-100 font-weight-bold text-primary ml-5">Update Employee</h4>
+					<button type="button" class="close text-primary" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body mx-3">
+					<div class="md-form mb-5">
+						<input type="text" id="uestdno" class="form-control validate" placeholer="Employee Number">
+					</div>
+
+					<div class="md-form mb-5">
+						<input type="text" id="uestdfname" class="form-control validate" placeholer="Full Name">
+					</div>
+
+					<div class="md-form mb-5">
+						<input type="text" id="uestduname" class="form-control validate" placeholer="Username">
+					</div>
+
+
+
+					<div class="md-form mb-5">
+						<select class="browser-default custom-select" id="uempdept">
+							<option value="" disabled selected>Select Department</option>
+							<option value="AcademicAffairs">Academic Affairs</option>
+							<option value="Clinic">College Clinic</option>
+							<option value="Registrar">College Regsitrar</option>
+							<option value="CAHS">College of Allied Health Studies</option>
+							<option value="CBA">College of Business and Accountancy</option>
+							<option value="CCS">College of Computer Studies</option>
+							<option value="CEAS">College of Education, Arts and Sciences</option>
+							<option value="CHTM">College of Hospitality and Tourism Management</option>
+							<option value="CollegeLibrary">Collge Library</option>
+							<option value="DisciplineUnit">Discipline Unit</option>
+							<option value="FinanceOffice">Finance Office</option>
+							<option value="Guidance">Guidance and Admission Unit</option>
+							<option value="HRM">Human Resources Management Unit</option>
+							<option value="IGS">Institute of Graduate Studies</option>
+							<option value="IHKS">Institute of Human Kinetics</option>
+							<option value="Maintenance">Janitorial and Maintenance</option>
+							<option value="MIS">Management and Information System Unit</option>
+							<option value="NSTP">National Service Training Program</option>
+							<option value="Security">Security Services Unit</option>
+							<option value="SHS">Senior High School</option>
+							<option value="Supply">Supply Services Unit</option>
+							<option value="VPOffice">Vice President's Office</option>
+							<option value="TechVoc">Vocational & Technical Education Office</option>
+						</select>
+					</div>
+
+
+
+					<!-- <div class="md-form mb-5">
+						<select class="browser-default custom-select" id="emppos">
+							<option value="" disabled selected>Position</option>
+							<option value="Custodian">Custodian</option>
+							<option value="Faculty">Faculty Member</option>
+							<option value="Officer">Officer</option>
+							<option value="Dean">Dean</option>
+							<option value="Department Head">Department Head</option>
+						</select>
+					</div> -->
+
+					<div class="md-form mb-5">
+						<select class="browser-default custom-select" id="uemrem">
+							<option value="Active">Active</option>
+							<option value="Inactive">Inactive</option>
+						</select>
+					</div>
+
+					<div class="md-form mb-5">
+
+						<button class="btn btn-warning btn-block buttonAdd" onclick="resetPwEditEmp()">Reset User
+							Password
+							<i class="fa fa-lock ml-1"></i>
+						</button>
+					</div>
+
+				</div>
+				<div class="modal-footer d-flex justify-content-center buttonAddFormWrapper">
+					<button class="btn btn-outline-primary btn-block buttonAdd" onclick="updateEditEmp()">Update
+						Student
 						<i class="fa fa-paper-plane-o ml-1"></i>
 					</button>
 				</div>
